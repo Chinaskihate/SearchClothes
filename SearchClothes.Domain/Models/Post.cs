@@ -21,5 +21,7 @@ namespace SearchClothes.Domain.Models
         public DateTime CreationTime { get; set; }
 
         public DateTime LastEditTime { get; set; }
+
+        public ICollection<Rate> Rates { get; set; }
     }
 }
