@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace SearchClothes.Domain.Models
 {
-    public class Rate
+    public class Tag
     {
-        public Guid UserId { get; set; }
-
-        [Required]
         public Guid Id { get; set; }
 
-        [Range(0, 5)]
-        public int Value { get; set; }
+        public string Name { get; set; }
+
+        [Required]
+        public Guid CreatorId { get; set; }
     }
 }
