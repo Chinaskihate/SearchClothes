@@ -5,11 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SearchClothes.Domain\SearchClothes.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Tags\" />
+    <Folder Include="Rates\" />
+    <Folder Include="Posts\" />
   </ItemGroup>
 
 </Project>

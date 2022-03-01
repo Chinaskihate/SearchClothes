@@ -19,6 +19,8 @@ namespace SearchClothes.Application.Interfaces
 
         DbSet<User> Users { get; set; }
 
+        public DbSet<Verification> Verifications { get; set; }
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

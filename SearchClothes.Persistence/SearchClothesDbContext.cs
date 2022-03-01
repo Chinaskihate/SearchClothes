@@ -16,6 +16,8 @@ namespace SearchClothes.Persistence
         public DbSet<Rate> Rates { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Verification> Verifications { get; set; }
     
         public SearchClothesDbContext(DbContextOptions<SearchClothesDbContext> options)
             :base(options) { }
@@ -26,6 +28,7 @@ namespace SearchClothes.Persistence
             builder.ApplyConfiguration(new RateConfiguration());
             builder.ApplyConfiguration(new TagConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new VerificationConfiguration());
 
             base.OnModelCreating(builder);
         }
