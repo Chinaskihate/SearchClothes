@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace SearchClothes.Domain.Models
 {
-    public class Verification
+    public class Verification : DomainObject
     {
-        public Guid Id { get; set; }
-
         public string Email { get; set; }
+
+        public string Username { get; set; }
 
         public string PasswordHash { get; set; }
 
-        public Guid Code{ get; set; }
+        public Guid Code { get; set; }
 
         public bool IsVerificated { get; set; }
     }

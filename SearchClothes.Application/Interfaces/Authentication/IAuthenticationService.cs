@@ -11,15 +11,17 @@ namespace SearchClothes.Application.Interfaces.Authentication
     {
         Success,
         EmailAlreadyExists,
-        UsernameAlreadyExists
+        UsernameAlreadyExists,
+        InvalidEmail,
+        ServerError
     }
 
     public interface IAuthenticationService
     {
-        Task<User> Login(string username, string passwordHash);
+        Task<User> Login(string email, string password);
 
-        Task<RegistrationResult> Registration(string username, string email, string passwordHash);
+        Task<RegistrationResult> Registration(string username, string email, string password);
 
-        Task<User> Verificate(string username, string email, string passwordHash, Guid verificationCode);
+        Task<User> Verificate(string email, Guid verificationCode);
     }
 }

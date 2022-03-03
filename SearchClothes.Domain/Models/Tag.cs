@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace SearchClothes.Domain.Models
 {
-    public class Tag
+    public class Tag : DomainObject
     {
-        public Guid Id { get; set; }
-
         public string Name { get; set; }
 
         [Required]

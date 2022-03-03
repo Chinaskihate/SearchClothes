@@ -17,11 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchClothes.Domain", "SearchClothes.Domain\SearchClothes.Domain.csproj", "{20712C35-FBCF-4CAA-A963-C176765295AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchClothes.Application", "SearchClothes.Application\SearchClothes.Application.csproj", "{898F1690-E840-48C1-A386-05DBCF03AF86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchClothes.Application", "SearchClothes.Application\SearchClothes.Application.csproj", "{898F1690-E840-48C1-A386-05DBCF03AF86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchClothes.Persistence", "SearchClothes.Persistence\SearchClothes.Persistence.csproj", "{9E51CD48-E4D8-42D4-8B3E-513325949C16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchClothes.Persistence", "SearchClothes.Persistence\SearchClothes.Persistence.csproj", "{9E51CD48-E4D8-42D4-8B3E-513325949C16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchClothes.WebApi", "SearchClothes.WebApi\SearchClothes.WebApi.csproj", "{950C9749-0071-4AE1-AF4D-64B02762D67C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchClothes.WebApi", "SearchClothes.WebApi\SearchClothes.WebApi.csproj", "{950C9749-0071-4AE1-AF4D-64B02762D67C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureTest", "FeatureTest\FeatureTest.csproj", "{FDBD7623-90E6-437A-BAFA-A0EBCF83DC3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{950C9749-0071-4AE1-AF4D-64B02762D67C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{950C9749-0071-4AE1-AF4D-64B02762D67C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{950C9749-0071-4AE1-AF4D-64B02762D67C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDBD7623-90E6-437A-BAFA-A0EBCF83DC3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDBD7623-90E6-437A-BAFA-A0EBCF83DC3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDBD7623-90E6-437A-BAFA-A0EBCF83DC3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDBD7623-90E6-437A-BAFA-A0EBCF83DC3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{898F1690-E840-48C1-A386-05DBCF03AF86} = {411DDF3A-3367-4B81-AB66-3AB827909E5C}
 		{9E51CD48-E4D8-42D4-8B3E-513325949C16} = {E8487C9F-6A93-450A-99D0-C7D0D17A0EB3}
 		{950C9749-0071-4AE1-AF4D-64B02762D67C} = {CBE7CF9A-DAF8-4E2F-A3CA-2120E29A5396}
+		{FDBD7623-90E6-437A-BAFA-A0EBCF83DC3F} = {74A8105D-1241-45FF-99B7-80838A98EE87}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {744A1BD7-602A-45EC-9459-C90853959E98}
