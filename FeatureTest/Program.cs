@@ -1,12 +1,21 @@
-﻿using System;
+﻿using SearchClothes.Application.Services.Authentication;
+using SearchClothes.Domain.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace FeatureTest
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine(Guid.Empty);
+            CodeSender sender = new CodeSender();
+            var verification = new Verification()
+            {
+                Email = "markwantsapi@gmail.com",
+                Code = Guid.NewGuid()
+            };
+            await sender.SendCode(verification);
         }
     }
 }

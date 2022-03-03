@@ -22,10 +22,11 @@ namespace SearchClothes.Application.Users.Commands
         public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             // TODO: change it
-            var user = await _authenticationService.Verificate(request.Username, request.Email,
-                request.PasswordHash, request.VerificationCode);
+            //var user = await _authenticationService.Verificate(request.Username, request.Email,
+            //    request.PasswordHash, request.VerificationCode);
 
-            return user is null ? Guid.Empty : user.Id;
+            //return user is null ? Guid.Empty : user.Id;
+            return Guid.Empty;
         }
     }
 }
