@@ -95,6 +95,7 @@ namespace SearchClothes.Application.Services.Authentication
                 CreatedPosts = new List<Post>(),
                 RatedPosts = new List<Post>()
             };
+            await _userService.Create(user);
             return user;
         }
     }

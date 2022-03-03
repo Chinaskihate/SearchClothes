@@ -8,6 +8,7 @@
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="MailKit" Version="3.1.1" />
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
   </ItemGroup>
@@ -20,6 +21,7 @@
     <Folder Include="Tags\" />
     <Folder Include="Rates\" />
     <Folder Include="Posts\" />
+    <Folder Include="Users\Queries\" />
   </ItemGroup>
 
 </Project>

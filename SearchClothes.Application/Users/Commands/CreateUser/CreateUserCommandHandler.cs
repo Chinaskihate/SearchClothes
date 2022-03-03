@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SearchClothes.Application.Users.Commands
+namespace SearchClothes.Application.Users.Commands.CreateUser
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, RegistrationResult>
     {
         private readonly IAuthenticationService _authenticationService;
 
@@ -19,14 +19,11 @@ namespace SearchClothes.Application.Users.Commands
             _authenticationService = authenticationService;
         }
 
-        public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<RegistrationResult> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            // TODO: change it
-            //var user = await _authenticationService.Verificate(request.Username, request.Email,
-            //    request.PasswordHash, request.VerificationCode);
+            var result = await _authenticationService.Registration(request.Username, request.Email, request.Password);
 
-            //return user is null ? Guid.Empty : user.Id;
-            return Guid.Empty;
+            return result;
         }
     }
 }
