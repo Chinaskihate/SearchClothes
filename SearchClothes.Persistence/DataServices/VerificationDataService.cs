@@ -11,12 +11,13 @@ namespace SearchClothes.Persistence.DataServices
 {
     public class VerificationDataService : IVerificationService
     {
+        // TODO: think about inheritance here.
         private GenericDataService<Verification> _dataService;
         private SearchClothesDbContext _dbContext;
 
-        public VerificationDataService(GenericDataService<Verification> dataService, SearchClothesDbContext dbContext)
+        public VerificationDataService(SearchClothesDbContext dbContext)
         {
-            _dataService = dataService;
+            _dataService = new GenericDataService<Verification>(dbContext);
             _dbContext = dbContext;
         }
 

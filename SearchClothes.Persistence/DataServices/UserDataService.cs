@@ -14,9 +14,9 @@ namespace SearchClothes.Persistence.DataServices
         private GenericDataService<User> _dataService;
         private SearchClothesDbContext _dbContext;
 
-        public UserDataService(GenericDataService<User> dataService, SearchClothesDbContext dbContext)
+        public UserDataService(SearchClothesDbContext dbContext)
         {
-            _dataService = dataService;
+            _dataService = new GenericDataService<User>(dbContext);
             _dbContext = dbContext;
         }
 

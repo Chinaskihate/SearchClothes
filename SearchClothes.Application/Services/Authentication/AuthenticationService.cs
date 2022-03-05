@@ -49,7 +49,7 @@ namespace SearchClothes.Application.Services.Authentication
             {
                 return RegistrationResult.UsernameAlreadyExists;
             }
-            verification = await _verificationService.GetByEmail(username);
+            verification = await _verificationService.GetByEmail(email);
             if (verification != null)
             {
                 return RegistrationResult.EmailAlreadyExists;
@@ -58,6 +58,7 @@ namespace SearchClothes.Application.Services.Authentication
             {
                 Id = Guid.NewGuid(),
                 Username = username,
+                Email = email,
                 PasswordHash = _passwordHasher.HashPassword(password),
                 Code = Guid.NewGuid()
             };

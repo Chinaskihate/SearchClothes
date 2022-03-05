@@ -2,6 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SearchClothes.Application.Interfaces;
+using SearchClothes.Application.Interfaces.DataServices;
+using SearchClothes.Domain.Models;
+using SearchClothes.Persistence.DataServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +18,11 @@ namespace SearchClothes.Persistence
         public static IServiceCollection AddPersistence(this IServiceCollection services,
             IConfiguration configuration)
         {
+            services.AddScoped<IDataService<User>, UserDataService>();
+            services.AddScoped<IUserService, UserDataService>();
+            services.AddScoped<IDataService<Verification>, VerificationDataService>();
+            services.AddScoped<IVerificationService, VerificationDataService>();
+
             var connectionString = configuration["DbConnection"];
             services.AddDbContext<SearchClothesDbContext>(options =>
             {
