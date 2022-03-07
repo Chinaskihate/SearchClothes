@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
+using SearchClothes.Application.Commands.Users.VerificateUser;
 using SearchClothes.Application.Common.Mappings;
-using SearchClothes.Application.Users.Commands.VerificateUser;
 using System;
 
-namespace SearchClothes.WebApi.Models
+namespace SearchClothes.WebApi.Models.Authentication
 {
     public class VerificateUserDto : IMapWith<VerificateUserCommand>
     {

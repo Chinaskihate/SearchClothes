@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using SearchClothes.Application.Commands.Users.CreateUser;
 using SearchClothes.Application.Common.Mappings;
-using SearchClothes.Application.Users.Commands.CreateUser;
 
-namespace SearchClothes.WebApi.Models
+namespace SearchClothes.WebApi.Models.Authentication
 {
     public class CreateUserDto : IMapWith<CreateUserCommand>
     {

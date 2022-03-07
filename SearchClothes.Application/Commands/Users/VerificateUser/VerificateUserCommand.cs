@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SearchClothes.Application.Users.Commands.Login
+namespace SearchClothes.Application.Commands.Users.VerificateUser
 {
-    public class LoginUserCommand : IRequest<User>
+    public class VerificateUserCommand : IRequest<User>
     {
         public string Email { get; set; }
 
-        public string Password { get; set; }
+        public Guid VerificationCode { get; set; }
     }
 }

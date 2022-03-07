@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SearchClothes.Persistence.DataServices
 {
-    public class VerificationDataService : IVerificationService
+    public class VerificationDataService : IVerificationDataService
     {
         // TODO: think about inheritance here.
         private GenericDataService<Verification> _dataService;

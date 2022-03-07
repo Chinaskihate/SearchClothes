@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SearchClothes.Persistence.DataServices
 {
-    public class UserDataService : IUserService
+    public class UserDataService : IUserDataService
     {
         private GenericDataService<User> _dataService;
         private SearchClothesDbContext _dbContext;
@@ -32,17 +32,37 @@ namespace SearchClothes.Persistence.DataServices
 
         public async Task<User> Get(Guid id)
         {
-            return await _dataService.Get(id);
+            var entity = await _dbContext.Users
+                .Include(user => user.RatedPosts)
+                .Include(user => user.CreatedPosts)
+                .FirstOrDefaultAsync(user => user.Id == id);
+            return entity;
         }
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            return await _dataService.GetAll();
+            var entities = await _dbContext.Users
+                .Include(user => user.RatedPosts)
+                .Include(user => user.CreatedPosts)
+                .ToListAsync();
+            return entities;
         }
 
         public async Task<User> GetByEmail(string email)
         {
-            var entity = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
+            var entity = await _dbContext.Users
+                .Include(user => user.RatedPosts)
+                .Include(user => user.CreatedPosts)
+                .FirstOrDefaultAsync(user => user.Email == email);
+            return entity;
+        }
+
+        public async Task<User> GetByToken(Guid token)
+        {
+            var entity = await _dbContext.Users
+                .Include(user => user.RatedPosts)
+                .Include(user => user.CreatedPosts)
+                .FirstOrDefaultAsync(user => user.Token == token);
             return entity;
         }
 

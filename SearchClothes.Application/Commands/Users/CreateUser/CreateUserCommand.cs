@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SearchClothes.Application.Users.Commands.CreateUser
+namespace SearchClothes.Application.Commands.Users.CreateUser
 {
     public class CreateUserCommand : IRequest<RegistrationResult>
     {

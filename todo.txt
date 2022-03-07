@@ -1,0 +1,2 @@
+1. разобраться с маршрутизацией
+2. в LoginUserCommand, VerificateUserCommand, GetAllTagsQuery разобраться с типом ответа: модель или ее дто?

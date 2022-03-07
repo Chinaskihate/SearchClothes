@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using SearchClothes.Application.Commands.Users.Login;
 using SearchClothes.Application.Common.Mappings;
-using SearchClothes.Application.Users.Commands.Login;
 
-namespace SearchClothes.WebApi.Models
+namespace SearchClothes.WebApi.Models.Authentication
 {
     public class LoginUserDto : IMapWith<LoginUserCommand>
     {

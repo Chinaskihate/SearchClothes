@@ -18,10 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Tags\" />
-    <Folder Include="Rates\" />
-    <Folder Include="Posts\" />
-    <Folder Include="Users\Queries\" />
+    <Folder Include="Commands\Rates\" />
+    <Folder Include="Commands\Posts\" />
   </ItemGroup>
 
 </Project>

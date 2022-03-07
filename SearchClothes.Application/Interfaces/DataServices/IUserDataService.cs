@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SearchClothes.Application.Interfaces.DataServices
 {
-    public interface IVerificationService : IDataService<Verification>
+    public interface IUserDataService : IDataService<User>
     {
-        public Task<Verification> GetByEmail(string email);
+        public Task<User> GetByEmail(string email);
 
-        public Task<Verification> GetByUsername(string username);
+        public Task<User> GetByToken(Guid token);
     }
 }

@@ -13,23 +13,29 @@ namespace SearchClothes.Application.Services.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private IUserService _userService;
-        private IVerificationService _verificationService;
+        private IUserDataService _userDataService;
+        private IVerificationDataService _verificationDataService;
         private IPasswordHasher _passwordHasher;
         private ICodeSender _codeSender;
 
-        public AuthenticationService(IUserService userService, IVerificationService verificationService,
+        public AuthenticationService(IUserDataService userService, IVerificationDataService verificationService,
             IPasswordHasher passwordHasher, ICodeSender codeSender)
         {
-            _userService = userService;
-            _verificationService = verificationService;
+            _userDataService = userService;
+            _verificationDataService = verificationService;
             _passwordHasher = passwordHasher;
             _codeSender = codeSender;
         }
 
+        public async Task<User> GetByToken(Guid token)
+        {
+            var user = await _userDataService.GetByToken(token);
+            return user;
+        }
+
         public async Task<User> Login(string email, string password)
         {
-            var user = await _userService.GetByEmail(email);
+            var user = await _userDataService.GetByEmail(email);
             if (user == null)
             {
                 throw new UserNotFoundException(email);
@@ -44,12 +50,12 @@ namespace SearchClothes.Application.Services.Authentication
 
         public async Task<RegistrationResult> Registration(string username, string email, string password)
         {
-            var verification = await _verificationService.GetByUsername(username);
+            var verification = await _verificationDataService.GetByUsername(username);
             if (verification != null)
             {
                 return RegistrationResult.UsernameAlreadyExists;
             }
-            verification = await _verificationService.GetByEmail(email);
+            verification = await _verificationDataService.GetByEmail(email);
             if (verification != null)
             {
                 return RegistrationResult.EmailAlreadyExists;
@@ -62,7 +68,7 @@ namespace SearchClothes.Application.Services.Authentication
                 PasswordHash = _passwordHasher.HashPassword(password),
                 Code = Guid.NewGuid()
             };
-            await _verificationService.Create(newUser);
+            await _verificationDataService.Create(newUser);
             var res = await _codeSender.SendCode(newUser);
             if (res == CodeSendingResult.ServerError)
             {
@@ -77,7 +83,7 @@ namespace SearchClothes.Application.Services.Authentication
 
         public async Task<User> Verificate(string email, Guid verificationCode)
         {
-            var verification = await _verificationService.GetByEmail(email);
+            var verification = await _verificationDataService.GetByEmail(email);
             if (verification == null)
             {
                 throw new UserNotFoundException(email);
@@ -96,7 +102,7 @@ namespace SearchClothes.Application.Services.Authentication
                 CreatedPosts = new List<Post>(),
                 RatedPosts = new List<Post>()
             };
-            await _userService.Create(user);
+            await _userDataService.Create(user);
             return user;
         }
     }

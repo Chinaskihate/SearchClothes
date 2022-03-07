@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SearchClothes.Application.Users.Commands.CreateUser
+namespace SearchClothes.Application.Commands.Users.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, RegistrationResult>
     {

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SearchClothes.Application.Commands.Users.CreateUser;
+using SearchClothes.Application.Commands.Users.Login;
+using SearchClothes.Application.Commands.Users.VerificateUser;
 using SearchClothes.Application.Interfaces.Authentication;
-using SearchClothes.Application.Users.Commands.CreateUser;
-using SearchClothes.Application.Users.Commands.Login;
-using SearchClothes.Application.Users.Commands.VerificateUser;
 using SearchClothes.Domain.Models;
-using SearchClothes.WebApi.Models;
+using SearchClothes.WebApi.Models.Authentication;
 using System;
 using System.Threading.Tasks;
 

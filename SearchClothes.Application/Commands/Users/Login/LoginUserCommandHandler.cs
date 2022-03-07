@@ -8,21 +8,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SearchClothes.Application.Users.Commands.VerificateUser
+namespace SearchClothes.Application.Commands.Users.Login
 {
-    public class VerificateUserCommandHandler : IRequestHandler<VerificateUserCommand, User>
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, User>
     {
         private readonly IAuthenticationService _authenticationService;
 
-        public VerificateUserCommandHandler(IAuthenticationService authenticationService)
+        public LoginUserCommandHandler(IAuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
         }
 
-        public async Task<User> Handle(VerificateUserCommand request, CancellationToken cancellationToken)
+        public async Task<User> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
-            var user = await _authenticationService.Verificate(request.Email, request.VerificationCode);
-
+            var user = await _authenticationService.Login(request.Email, request.Password);
             return user;
         }
     }
