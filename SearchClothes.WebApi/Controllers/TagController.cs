@@ -21,7 +21,7 @@ namespace SearchClothes.WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("/create")]
+        [HttpPost("create")]
         public async Task<ActionResult<bool>> Create([FromBody] CreateTagDto createTagDto)
         {
             var command = _mapper.Map<CreateTagCommand>(createTagDto);
@@ -29,7 +29,7 @@ namespace SearchClothes.WebApi.Controllers
             return Ok(result);
         }
 
-        [HttpPost("/get-all")]
+        [HttpPost("get-all")]
         public async Task<ActionResult<IEnumerable<Tag>>> GetAll([FromBody] TokenDto tokenDto)
         {
             var command = _mapper.Map<GetAllTagsQuery>(tokenDto);
@@ -37,7 +37,7 @@ namespace SearchClothes.WebApi.Controllers
             return Ok(result);
         }
 
-        [HttpPost("/get-by-name")]
+        [HttpPost("get-by-name")]
         public async Task<ActionResult<IEnumerable<Tag>>> GetByName([FromBody] GetTagsByNameDto getTagsByNameDto)
         {
             var command = _mapper.Map<GetTagsByNameQuery>(getTagsByNameDto);

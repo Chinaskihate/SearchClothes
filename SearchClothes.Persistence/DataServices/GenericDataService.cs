@@ -42,10 +42,16 @@ namespace SearchClothes.Persistence.DataServices
 
         public async Task<T> Update(Guid id, T entity)
         {
-            entity.Id = id;
-            _dbContext.Set<T>().Update(entity);
-            await _dbContext.SaveChangesAsync();
-
+            try
+            {
+                entity.Id = id;
+                _dbContext.Set<T>().Update(entity);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
             return entity;
         }
         public async Task<bool> Delete(Guid id)

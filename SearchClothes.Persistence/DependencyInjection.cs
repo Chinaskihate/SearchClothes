@@ -20,9 +20,15 @@ namespace SearchClothes.Persistence
         {
             services.AddScoped<IDataService<User>, UserDataService>();
             services.AddScoped<IUserDataService, UserDataService>();
+
             services.AddScoped<IDataService<Verification>, VerificationDataService>();
             services.AddScoped<IVerificationDataService, VerificationDataService>();
+
+            services.AddScoped<IDataService<Tag>, TagDataService>();
             services.AddScoped<ITagDataService, TagDataService>();
+
+            services.AddScoped<IDataService<Post>, PostDataService>();
+            services.AddScoped<IPostDataService, PostDataService>();
 
             var connectionString = configuration["DbConnection"];
             services.AddDbContext<SearchClothesDbContext>(options =>

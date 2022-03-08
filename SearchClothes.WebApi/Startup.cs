@@ -5,18 +5,22 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using SearchClothes.Application;
 using SearchClothes.Application.Common.Mappings;
 using SearchClothes.Application.Interfaces;
 using SearchClothes.Application.Interfaces.Authentication;
 using SearchClothes.Application.Interfaces.DataServices;
+using SearchClothes.Application.Interfaces.Photos;
 using SearchClothes.Application.Services.Authentication;
 using SearchClothes.Domain.Models;
 using SearchClothes.Persistence;
 using SearchClothes.Persistence.DataServices;
+using SearchClothes.WebApi.Services.Photos;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -43,6 +47,7 @@ namespace SearchClothes.WebApi
             });
             services.AddApplication();
             services.AddPersistence(Configuration);
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddControllers();
 
             services.AddCors(options =>
@@ -55,6 +60,7 @@ namespace SearchClothes.WebApi
                 });
             });
 
+            services.AddScoped<IPhotoService, PhotoService>();
             services.AddSwaggerGen();
         }
 
@@ -75,6 +81,13 @@ namespace SearchClothes.WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                        Path.Combine(Directory.GetCurrentDirectory(), "Photos")),
+                RequestPath = "/Photos"
             });
         }
     }

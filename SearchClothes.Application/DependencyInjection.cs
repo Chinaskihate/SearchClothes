@@ -2,16 +2,14 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using SearchClothes.Application.Interfaces.Authentication;
-using SearchClothes.Application.Interfaces.DataServices;
+using SearchClothes.Application.Interfaces.Posts;
 using SearchClothes.Application.Interfaces.Tags;
+using SearchClothes.Application.Interfaces.Users;
 using SearchClothes.Application.Services.Authentication;
+using SearchClothes.Application.Services.Posts;
 using SearchClothes.Application.Services.Tags;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using SearchClothes.Application.Services.Users;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SearchClothes.Application
 {
@@ -23,6 +21,8 @@ namespace SearchClothes.Application
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<ICodeSender, CodeSender>();
             services.AddScoped<ITagService, TagService>();
+            services.AddScoped<IPostService, PostService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
             return services;

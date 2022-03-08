@@ -27,12 +27,6 @@ namespace SearchClothes.Application.Services.Authentication
             _codeSender = codeSender;
         }
 
-        public async Task<User> GetByToken(Guid token)
-        {
-            var user = await _userDataService.GetByToken(token);
-            return user;
-        }
-
         public async Task<User> Login(string email, string password)
         {
             var user = await _userDataService.GetByEmail(email);

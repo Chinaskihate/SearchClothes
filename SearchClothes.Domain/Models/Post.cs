@@ -18,14 +18,12 @@ namespace SearchClothes.Domain.Models
 
         public string Description { get; set; }
 
-        public string ImagePath { get; set; }
-
         public DateTime CreationTime { get; set; }
 
         public DateTime LastEditTime { get; set; }
 
-        public ICollection<Rate> Rates { get; set; }
+        public IEnumerable<Rate> Rates { get; set; }
     
-        public ICollection<Tag> Tags { get; set; }
+        public IEnumerable<Tag> Tags { get; set; }
     }
 }

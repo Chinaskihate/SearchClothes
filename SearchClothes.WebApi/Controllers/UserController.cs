@@ -21,7 +21,7 @@ namespace SearchClothes.WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("/register")]
+        [HttpPost("register")]
         public async Task<ActionResult<RegistrationResult>> Create([FromBody] CreateUserDto createUserDto)
         {
             var command = _mapper.Map<CreateUserCommand>(createUserDto);
@@ -29,7 +29,7 @@ namespace SearchClothes.WebApi.Controllers
             return Ok(result);
         }
 
-        [HttpPost("/verificate")]
+        [HttpPost("verificate")]
         // TODO: change return type
         public async Task<ActionResult<User>> Verificate([FromBody] VerificateUserDto verificateUserDto)
         {
@@ -38,7 +38,7 @@ namespace SearchClothes.WebApi.Controllers
             return Ok(user);
         }
 
-        [HttpPost("/login")]
+        [HttpPost("login")]
         public async Task<ActionResult<Guid>> Login([FromBody] LoginUserDto loginUserDto)
         {
             var command = _mapper.Map<LoginUserCommand>(loginUserDto);

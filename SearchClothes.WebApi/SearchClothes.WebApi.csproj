@@ -14,4 +14,8 @@
     <ProjectReference Include="..\SearchClothes.Persistence\SearchClothes.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Photos\" />
+  </ItemGroup>
+
 </Project>

@@ -2,6 +2,7 @@
 using SearchClothes.Application.Interfaces.Authentication;
 using SearchClothes.Application.Interfaces.DataServices;
 using SearchClothes.Application.Interfaces.Tags;
+using SearchClothes.Application.Interfaces.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +15,17 @@ namespace SearchClothes.Application.Commands.Tags.CreateTag
     public class CreateTagCommandHandler : IRequestHandler<CreateTagCommand, bool>
     {
         private ITagService _tagService;
-        private IAuthenticationService _authenticationService;
+        private IUserService _userService;
 
-        public CreateTagCommandHandler(ITagService tagService, IAuthenticationService authenticationService)
+        public CreateTagCommandHandler(ITagService tagService, IUserService userService)
         {
             _tagService = tagService;
-            _authenticationService = authenticationService;
+            _userService = userService;
         }
 
         public async Task<bool> Handle(CreateTagCommand request, CancellationToken cancellationToken)
         {
-            var user = await _authenticationService.GetByToken(request.Token);
+            var user = await _userService.GetByToken(request.Token);
             if (user == null)
             {
                 return false;

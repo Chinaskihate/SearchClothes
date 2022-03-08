@@ -23,7 +23,5 @@ namespace SearchClothes.Application.Interfaces.Authentication
         Task<RegistrationResult> Registration(string username, string email, string password);
 
         Task<User> Verificate(string email, Guid verificationCode);
-
-        Task<User> GetByToken(Guid token);
     }
 }
