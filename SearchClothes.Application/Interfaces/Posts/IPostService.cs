@@ -23,5 +23,7 @@ namespace SearchClothes.Application.Interfaces.Posts
             string Description, 
             string SellerLink,
             IEnumerable<Tag> Tags) postInfo);
+
+        public Task<IEnumerable<Post>> GetPosts(string title, IEnumerable<Tag> tags, double minRate);
     }
 }

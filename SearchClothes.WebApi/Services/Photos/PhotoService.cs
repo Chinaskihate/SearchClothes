@@ -24,7 +24,7 @@ namespace SearchClothes.WebApi.Services.Photos
         public async Task<bool> SavePhoto(Guid postId, IFormFile photo)
         {
             string fileName = postId.ToString();
-            var physicalPath = _env.ContentRootPath + "/Photos/" + fileName;
+            var physicalPath = _env.ContentRootPath + "/Photos/" + fileName + ".png";
             using(var stream = new FileStream(physicalPath, FileMode.Create))
             {
                 await photo.CopyToAsync(stream);

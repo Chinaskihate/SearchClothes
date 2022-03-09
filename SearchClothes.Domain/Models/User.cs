@@ -16,8 +16,8 @@ namespace SearchClothes.Domain.Models
 
         public Guid Token { get; set; }
 
-        public ICollection<Post> CreatedPosts { get; set; }
+        public IList<Post> CreatedPosts { get; set; }
 
-        public ICollection<Post> RatedPosts { get; set; }
+        public IList<Post> RatedPosts { get; set; }
     }
 }

@@ -30,12 +30,26 @@ namespace SearchClothes.Persistence.DataServices
             return await _dataService.Delete(id);
         }
 
-        public async Task<Post> Get(Guid id)
+        public async Task<Post> Get(Guid id) 
         {
             var entity = await _dbContext.Posts
                 .Include(post => post.Tags)
                 .Include(post => post.Rates)
                 .FirstOrDefaultAsync(post => post.Id == id);
+            return entity;
+        }
+
+        public async Task<IEnumerable<Post>> GetPosts(string title, IEnumerable<Tag> tags, double minRate)
+        {
+            var entity = await _dbContext.Posts
+                .Include(post => post.Tags)
+                .Include(post => post.Rates)
+                .Where(post => post.Title.Contains(title))
+                .Where(post => post.Rates.Count() == 0 ? true : post.Rates.Average(r => r.Value) >= minRate)
+                .ToListAsync();
+            entity = entity
+                .Where(post => !tags.Except(post.Tags).Any())
+                .ToList();
             return entity;
         }
 
@@ -74,6 +88,16 @@ namespace SearchClothes.Persistence.DataServices
                 .Include(post => post.Tags)
                 .Include(post => post.Rates)
                 .Where(post => !tags.Except(post.Tags).Any())
+                .ToListAsync();
+            return entity;
+        }
+
+        public async Task<IEnumerable<Post>> GetByTitle(string title)
+        {
+            var entity = await _dbContext.Posts
+                .Include(post => post.Tags)
+                .Include(post => post.Rates)
+                .Where(post => post.Title.Contains(title))
                 .ToListAsync();
             return entity;
         }

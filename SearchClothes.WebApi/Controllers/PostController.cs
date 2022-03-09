@@ -4,10 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using SearchClothes.Application.Commands.Photos;
 using SearchClothes.Application.Commands.Posts.CreatePost;
 using SearchClothes.Application.Interfaces.Posts;
+using SearchClothes.Application.Queries.Posts.GetPosts;
 using SearchClothes.Domain.Models;
 using SearchClothes.WebApi.Models;
 using SearchClothes.WebApi.Models.Photos;
 using SearchClothes.WebApi.Models.Posts;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SearchClothes.WebApi.Controllers
@@ -30,10 +33,26 @@ namespace SearchClothes.WebApi.Controllers
             return Ok(result);
         }
 
-        //[HttpPost("SavePhoto")]
-        //public async Task<ActionResult> SavePhoto(TokenDto tokenDto)
-        //{
-        //    var 
-        //}
+        [HttpPost("save-photo")]
+        public async Task<ActionResult> SavePhoto([FromQuery] Guid token, Guid postId)
+        {
+            var photoDto = new PhotoDto()
+            {
+                Token = token,
+                PostId = postId,
+                Photo = Request.Form.Files[0]
+            };
+            var saveCommand = _mapper.Map<SavePhotoCommand>(photoDto);
+            var result = await Mediator.Send(saveCommand);
+            return Ok(result);
+        }
+
+        [HttpPost("get")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetPosts(GetPostsDto getPostsDto)
+        {
+            var postsCommand = _mapper.Map<GetPostsQuery>(getPostsDto);
+            var result = await Mediator.Send(postsCommand);
+            return Ok(result);
+        }
     }
 }

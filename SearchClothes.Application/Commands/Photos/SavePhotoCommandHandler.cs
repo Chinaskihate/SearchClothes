@@ -15,8 +15,9 @@ namespace SearchClothes.Application.Commands.Photos
         private readonly IPhotoService _photoService;
         private readonly IUserService _userService;
 
-        public SavePhotoCommandHandler(IPhotoService photoService)
+        public SavePhotoCommandHandler(IUserService userService, IPhotoService photoService)
         {
+            _userService = userService;
             _photoService = photoService;
         }
 

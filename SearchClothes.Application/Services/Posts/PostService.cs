@@ -39,7 +39,7 @@ namespace SearchClothes.Application.Services.Posts
                 Title = postInfo.Title,
                 Description = postInfo.Description,
                 SellerLink = postInfo.SellerLink,
-                Tags = postInfo.Tags,
+                Tags = postInfo.Tags.ToList(),
                 Rates = new List<Rate>(),
                 CreationTime = DateTime.Now,
                 LastEditTime = DateTime.Now
@@ -53,6 +53,12 @@ namespace SearchClothes.Application.Services.Posts
                 return null;
             }
             return newPost;
+        }
+
+        public async Task<IEnumerable<Post>> GetPosts(string title, IEnumerable<Tag> tags, double minRate)
+        {
+            var posts = await _postDataService.GetPosts(title, tags, minRate);
+            return posts;
         }
     }
 }

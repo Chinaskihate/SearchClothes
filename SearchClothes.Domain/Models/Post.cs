@@ -22,8 +22,8 @@ namespace SearchClothes.Domain.Models
 
         public DateTime LastEditTime { get; set; }
 
-        public IEnumerable<Rate> Rates { get; set; }
+        public IList<Rate> Rates { get; set; }
     
-        public IEnumerable<Tag> Tags { get; set; }
+        public IList<Tag> Tags { get; set; }
     }
 }

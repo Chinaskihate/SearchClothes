@@ -34,7 +34,13 @@ namespace SearchClothes.Persistence.DataServices
         {
             var entity = await _dbContext.Users
                 .Include(user => user.RatedPosts)
+                    .ThenInclude(p => p.Rates)
+                .Include(user => user.RatedPosts)
+                    .ThenInclude(p => p.Tags)
                 .Include(user => user.CreatedPosts)
+                    .ThenInclude(p => p.Rates)
+                .Include(user => user.CreatedPosts)
+                    .ThenInclude(p => p.Tags)
                 .FirstOrDefaultAsync(user => user.Id == id);
             return entity;
         }
@@ -52,7 +58,13 @@ namespace SearchClothes.Persistence.DataServices
         {
             var entity = await _dbContext.Users
                 .Include(user => user.RatedPosts)
+                    .ThenInclude(p => p.Rates)
+                .Include(user => user.RatedPosts)
+                    .ThenInclude(p => p.Tags)
                 .Include(user => user.CreatedPosts)
+                    .ThenInclude(p => p.Rates)
+                .Include(user => user.CreatedPosts)
+                    .ThenInclude(p => p.Tags)
                 .FirstOrDefaultAsync(user => user.Email == email);
             return entity;
         }
@@ -61,7 +73,13 @@ namespace SearchClothes.Persistence.DataServices
         {
             var entity = await _dbContext.Users
                 .Include(user => user.RatedPosts)
+                    .ThenInclude(p => p.Rates)
+                .Include(user => user.RatedPosts)
+                    .ThenInclude(p => p.Tags)
                 .Include(user => user.CreatedPosts)
+                    .ThenInclude(p => p.Rates)
+                .Include(user => user.CreatedPosts)
+                    .ThenInclude(p => p.Tags)
                 .FirstOrDefaultAsync(user => user.Token == token);
             return entity;
         }
