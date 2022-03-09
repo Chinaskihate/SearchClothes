@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SearchClothes.Application.Queries.Posts.Common;
 using SearchClothes.Domain.Models;
 using System;
 using System.Collections.Generic;

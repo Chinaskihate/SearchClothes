@@ -60,5 +60,11 @@ namespace SearchClothes.Application.Services.Posts
             var posts = await _postDataService.GetPosts(title, tags, minRate);
             return posts;
         }
+
+        public async Task<IEnumerable<Post>> GetUserPosts(Guid userId)
+        {
+            var posts = await _postDataService.GetByCreatorId(userId);
+            return posts;
+        }
     }
 }
