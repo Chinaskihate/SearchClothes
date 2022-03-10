@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using SearchClothes.Application.Commands.Photos;
 using SearchClothes.Application.Commands.Posts.CreatePost;
+using SearchClothes.Application.Commands.Posts.DeletePost;
 using SearchClothes.Application.Interfaces.Posts;
 using SearchClothes.Application.Queries.Posts.Common;
 using SearchClothes.Application.Queries.Posts.GetPosts;
@@ -62,6 +63,14 @@ namespace SearchClothes.WebApi.Controllers
         {
             var postsCommand = _mapper.Map<GetUserPostsQuery>(tokenDto);
             var result = await Mediator.Send(postsCommand);
+            return Ok(result);
+        }
+
+        [HttpDelete("delete-post")]
+        public async Task<ActionResult<bool>> Delete(DeletePostDto deleteDto)
+        {
+            var deleteCommand = _mapper.Map<DeletePostCommand>(deleteDto);
+            var result = await Mediator.Send(deleteCommand);
             return Ok(result);
         }
     }

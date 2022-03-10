@@ -27,5 +27,7 @@ namespace SearchClothes.Application.Interfaces.Posts
         public Task<IEnumerable<Post>> GetPosts(string title, IEnumerable<Tag> tags, double minRate);
 
         public Task<IEnumerable<Post>> GetUserPosts(Guid userId);
+
+        public Task<bool> RemovePost(Guid postId);
     }
 }

@@ -13,6 +13,8 @@ namespace SearchClothes.Application.Interfaces.Users
 
         Task<User> GetById(Guid id);
 
-        Task<bool> AddPostToUser(User user, Post post);
+        Task<bool> AddPostToUser(Guid userId, Post post);
+
+        Task<bool> RemovePostFromUser(Guid userId, Guid postId);
     }
 }

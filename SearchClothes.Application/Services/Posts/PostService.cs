@@ -47,7 +47,7 @@ namespace SearchClothes.Application.Services.Posts
 
             // TODO: check if user already have it in this method.
             await _postDataService.Create(newPost);
-            var isCreated = await _userService.AddPostToUser(user, newPost);
+            var isCreated = await _userService.AddPostToUser(user.Id, newPost);
             if(!isCreated)
             {
                 return null;
@@ -65,6 +65,23 @@ namespace SearchClothes.Application.Services.Posts
         {
             var posts = await _postDataService.GetByCreatorId(userId);
             return posts;
+        }
+
+        public async Task<bool> RemovePost(Guid postId)
+        {
+            var post = await _postDataService.Get(postId);
+            if (post == null)
+            {
+                return false;
+            }
+            //var result = await _userService.RemovePostFromUser(post.CreatorId, postId);
+            //if (result)
+            //{
+            //    await _postDataService.Delete(postId);
+            //}
+            await _postDataService.Delete(postId);
+            return true;
+            
         }
     }
 }
