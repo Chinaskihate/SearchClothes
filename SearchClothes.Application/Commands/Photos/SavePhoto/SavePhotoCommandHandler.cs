@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SearchClothes.Application.Commands.Photos
+namespace SearchClothes.Application.Commands.Photos.SavePhoto
 {
     public class SavePhotoCommandHandler : IRequestHandler<SavePhotoCommand, bool>
     {

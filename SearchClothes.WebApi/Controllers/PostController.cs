@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using SearchClothes.Application.Commands.Photos;
+using SearchClothes.Application.Commands.Photos.DeletePhoto;
+using SearchClothes.Application.Commands.Photos.SavePhoto;
 using SearchClothes.Application.Commands.Posts.CreatePost;
 using SearchClothes.Application.Commands.Posts.DeletePost;
 using SearchClothes.Application.Interfaces.Posts;
+using SearchClothes.Application.Queries.Photos;
 using SearchClothes.Application.Queries.Posts.Common;
 using SearchClothes.Application.Queries.Posts.GetPosts;
 using SearchClothes.Application.Queries.Posts.GetUserPosts;
@@ -69,9 +72,32 @@ namespace SearchClothes.WebApi.Controllers
         [HttpDelete("delete-post")]
         public async Task<ActionResult<bool>> Delete(DeletePostDto deleteDto)
         {
-            var deleteCommand = _mapper.Map<DeletePostCommand>(deleteDto);
-            var result = await Mediator.Send(deleteCommand);
+            var deletePostCommand = _mapper.Map<DeletePostCommand>(deleteDto);
+            var result = await Mediator.Send(deletePostCommand);
+            var deletePhotoDto = new PhotoDto()
+            {
+                Token = deleteDto.Token,
+                PostId = deleteDto.PostId
+            };
+            var deletePhotoCommand = _mapper.Map<DeletePhotoCommand>(deletePhotoDto);
+            await Mediator.Send(deletePhotoCommand);
             return Ok(result);
+        }
+
+        //[HttpPut("update-post")]
+        //public async Task<ActionResult<Post>> Update()
+
+        [HttpGet("download-photo")]
+        public async Task<ActionResult> DownloadPhoto([FromQuery] Guid token, Guid postId)
+        {
+            var downloadDto = new PhotoDto()
+            {
+                Token = token,
+                PostId = postId
+            };
+            var downloadCommand = _mapper.Map<DownloadPhotoQuery>(downloadDto);
+            var result = await Mediator.Send(downloadCommand);
+            return result == null ? NotFound(downloadDto) : File(result, "image/png");
         }
     }
 }

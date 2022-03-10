@@ -11,6 +11,8 @@ namespace SearchClothes.Application.Interfaces.Photos
     {
         public Task<bool> SavePhoto(Guid postId, IFormFile photo);
 
-        public Task<IFormFile> GetPhoto(Guid postId);
+        public Task<byte[]> DownloadPhoto(Guid postId);
+
+        public Task<bool> DeletePhoto(Guid postId);
     }
 }
