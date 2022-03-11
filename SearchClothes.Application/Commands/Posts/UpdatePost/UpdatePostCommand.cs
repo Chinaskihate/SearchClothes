@@ -1,7 +1,5 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using SearchClothes.Application.Common.Posts;
-using SearchClothes.Application.Interfaces.Posts;
 using SearchClothes.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -9,14 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SearchClothes.Application.Commands.Posts.CreatePost
+namespace SearchClothes.Application.Commands.Posts.UpdatePost
 {
-    public class CreatePostCommand : IRequest<PostLookupDto>
+    public class UpdatePostCommand : IRequest<PostLookupDto>
     {
         public Guid Token { get; set; }
 
+        public Guid PostId { get; set; }
+
         public string Title { get; set; }
-    
+
         public string Description { get; set; }
 
         public string SellerLink { get; set; }

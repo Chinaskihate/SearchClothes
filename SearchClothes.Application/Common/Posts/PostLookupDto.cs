@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SearchClothes.Application.Queries.Posts.Common
+namespace SearchClothes.Application.Common.Posts
 {
     public class PostLookupDto : IMapWith<Post>
     {

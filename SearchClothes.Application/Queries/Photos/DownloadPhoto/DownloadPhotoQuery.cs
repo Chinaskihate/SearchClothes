@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SearchClothes.Application.Queries.Photos
+namespace SearchClothes.Application.Queries.Photos.DownloadPhoto
 {
     public class DownloadPhotoQuery : IRequest<byte[]>
     {

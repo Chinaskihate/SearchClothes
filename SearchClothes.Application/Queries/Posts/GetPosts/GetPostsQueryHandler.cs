@@ -1,17 +1,12 @@
 ﻿using AutoMapper;
-using MediatR;
-using SearchClothes.Application.Interfaces.Posts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
+using MediatR;
+using SearchClothes.Application.Common.Posts;
+using SearchClothes.Application.Interfaces.Posts;
+using SearchClothes.Application.Interfaces.Users;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using SearchClothes.Domain.Models;
-using SearchClothes.Application.Queries.Posts.Common;
-using SearchClothes.Application.Interfaces.Users;
 
 namespace SearchClothes.Application.Queries.Posts.GetPosts
 {

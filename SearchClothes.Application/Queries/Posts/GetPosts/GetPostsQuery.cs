@@ -1,11 +1,8 @@
 ﻿using MediatR;
-using SearchClothes.Application.Queries.Posts.Common;
+using SearchClothes.Application.Common.Posts;
 using SearchClothes.Domain.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SearchClothes.Application.Queries.Posts.GetPosts
 {

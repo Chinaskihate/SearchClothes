@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using SearchClothes.Application.Interfaces.Authentication;
-using SearchClothes.Application.Interfaces.DataServices;
-using SearchClothes.Application.Interfaces.Photos;
+﻿using SearchClothes.Application.Interfaces.DataServices;
 using SearchClothes.Application.Interfaces.Posts;
 using SearchClothes.Application.Interfaces.Users;
 using SearchClothes.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SearchClothes.Application.Services.Posts
@@ -48,7 +44,7 @@ namespace SearchClothes.Application.Services.Posts
             // TODO: check if user already have it in this method.
             await _postDataService.Create(newPost);
             var isCreated = await _userService.AddPostToUser(user.Id, newPost);
-            if(!isCreated)
+            if (!isCreated)
             {
                 return null;
             }
@@ -82,6 +78,26 @@ namespace SearchClothes.Application.Services.Posts
             await _postDataService.Delete(postId);
             return true;
             
+        }
+
+        public async Task<Post> UpdatePost((Guid PostId, 
+            string Title, 
+            string Description, 
+            string SellerLink, 
+            IEnumerable<Tag> Tags) newPostInfo)
+        {
+            var post = await _postDataService.Get(newPostInfo.PostId);
+            if (post == null)
+            {
+                return null;
+            }
+            post.Title = newPostInfo.Title;
+            post.Description = newPostInfo.Description;
+            post.SellerLink = newPostInfo.SellerLink;
+            post.Tags = newPostInfo.Tags.ToList();
+            
+            var newPost = await _postDataService.Update(post.Id, post);
+            return newPost;
         }
     }
 }

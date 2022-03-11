@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using SearchClothes.Application.Commands.Photos.DeletePhoto;
 using SearchClothes.Application.Commands.Photos.SavePhoto;
 using SearchClothes.Application.Common.Mappings;
-using SearchClothes.Application.Queries.Photos;
+using SearchClothes.Application.Queries.Photos.DownloadPhoto;
 using System;
 
 namespace SearchClothes.WebApi.Models.Photos

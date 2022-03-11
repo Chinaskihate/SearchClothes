@@ -1,14 +1,12 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
-using SearchClothes.Application.Commands.Photos;
 using SearchClothes.Application.Commands.Photos.DeletePhoto;
 using SearchClothes.Application.Commands.Photos.SavePhoto;
 using SearchClothes.Application.Commands.Posts.CreatePost;
 using SearchClothes.Application.Commands.Posts.DeletePost;
-using SearchClothes.Application.Interfaces.Posts;
-using SearchClothes.Application.Queries.Photos;
-using SearchClothes.Application.Queries.Posts.Common;
+using SearchClothes.Application.Commands.Posts.UpdatePost;
+using SearchClothes.Application.Common.Posts;
+using SearchClothes.Application.Queries.Photos.DownloadPhoto;
 using SearchClothes.Application.Queries.Posts.GetPosts;
 using SearchClothes.Application.Queries.Posts.GetUserPosts;
 using SearchClothes.Domain.Models;
@@ -16,7 +14,6 @@ using SearchClothes.WebApi.Models;
 using SearchClothes.WebApi.Models.Photos;
 using SearchClothes.WebApi.Models.Posts;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SearchClothes.WebApi.Controllers
@@ -32,10 +29,10 @@ namespace SearchClothes.WebApi.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<Post>> Create([FromBody] CreatePostDto createPostDto)
+        public async Task<ActionResult<PostLookupDto>> Create([FromBody] CreatePostDto createPostDto)
         {
-            var postCommand = _mapper.Map<CreatePostCommand>(createPostDto);
-            var result = await Mediator.Send(postCommand);
+            var createCommand = _mapper.Map<CreatePostCommand>(createPostDto);
+            var result = await Mediator.Send(createCommand);
             return Ok(result);
         }
 
@@ -84,8 +81,13 @@ namespace SearchClothes.WebApi.Controllers
             return Ok(result);
         }
 
-        //[HttpPut("update-post")]
-        //public async Task<ActionResult<Post>> Update()
+        [HttpPut("update-post")]
+        public async Task<ActionResult<PostLookupDto>> Update(UpdatePostDto updateDto)
+        {
+            var updateCommand = _mapper.Map<UpdatePostCommand>(updateDto);
+            var result = await Mediator.Send(updateCommand);
+            return Ok(result);
+        }
 
         [HttpGet("download-photo")]
         public async Task<ActionResult> DownloadPhoto([FromQuery] Guid token, Guid postId)
