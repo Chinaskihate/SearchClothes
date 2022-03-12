@@ -7,19 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SearchClothes.Application.Common.Posts
+namespace SearchClothes.Application.Common.Tags
 {
-    public class PostListVm : IMapWith<IEnumerable<Post>>
+    public class TagListVm : IMapWith<IEnumerable<Tag>>
     {
-        public IList<PostLookupDto> Posts { get; set; }
-    
+        public IList<TagLookupDto> Tags { get; set; }
+
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<IEnumerable<Post>, PostListVm>()
+            profile.CreateMap<IEnumerable<Tag>, TagListVm>()
                 .AfterMap((src, dest, context) =>
                 {
-                    dest.Posts = src.Select(p => context.Mapper.Map<PostLookupDto>(p)).ToList();
+                    dest.Tags = src.Select(tag => context.Mapper.Map<TagLookupDto>(tag)).ToList();
                 });
-        } 
+        }
     }
 }

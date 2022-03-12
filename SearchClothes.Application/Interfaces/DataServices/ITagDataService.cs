@@ -10,5 +10,7 @@ namespace SearchClothes.Application.Interfaces.DataServices
     public interface ITagDataService : IDataService<Tag>
     {
         public Task<IEnumerable<Tag>> GetByName(string name);
+
+        public Task<bool> Exists(IEnumerable<Tag> posts);
     }
 }

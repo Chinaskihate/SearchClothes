@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using SearchClothes.Application.Common.Posts;
+using SearchClothes.Application.Common.Tags;
 using SearchClothes.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace SearchClothes.Application.Queries.Posts.GetPosts
 
         public string Title { get; set; }
 
-        public IEnumerable<Tag> Tags { get; set; }
+        public IEnumerable<TagLookupDto> Tags { get; set; }
 
         public double MinimumRate { get; set; }
     }

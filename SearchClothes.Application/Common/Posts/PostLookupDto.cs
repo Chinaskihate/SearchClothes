@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SearchClothes.Application.Common.Mappings;
+using SearchClothes.Application.Common.Tags;
 using SearchClothes.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace SearchClothes.Application.Common.Posts
 
         public double Rate { get; set; }
 
-        public IList<Tag> Tags { get; set; }
+        public IEnumerable<TagLookupDto> Tags { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -46,6 +47,10 @@ namespace SearchClothes.Application.Common.Posts
                 opt => opt.MapFrom(
                     post => post.Rates.Count() == 0 ? 0 : post.Rates.Average(r => r.Value)
                     ))
+                .AfterMap((src, dest, context) =>
+                {
+                    dest.Tags = src.Tags.Select(t => context.Mapper.Map<TagLookupDto>(t)); 
+                })
                 .ForMember(postDto => postDto.Tags,
                 opt => opt.MapFrom(post => post.Tags));
         }

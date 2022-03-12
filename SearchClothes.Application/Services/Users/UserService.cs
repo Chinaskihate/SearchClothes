@@ -33,17 +33,23 @@ namespace SearchClothes.Application.Services.Users
         public async Task<bool> AddPostToUser(Guid userId, Post post)
         {
             var user = await _userDataService.Get(userId);
-            if (user == null)
-            {
-                return false;
-            }
-            if (user.CreatedPosts.Any(p => p.Title == post.Title))
+            if (await HavePostWithTitle(userId, post.Title))
             {
                 return false;
             }
             user.CreatedPosts.Add(post);
             await _userDataService.Update(user.Id, user);
             return true;
+        }
+
+        public async Task<bool> HavePostWithTitle(Guid userId, string title)
+        {
+            var user = await _userDataService.Get(userId);
+            if (user == null)
+            {
+                return false;
+            }
+            return user.CreatedPosts.Any(p => p.Title == title);
         }
 
         public async Task<bool> RemovePostFromUser(Guid userId, Guid postId)

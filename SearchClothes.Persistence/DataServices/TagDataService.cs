@@ -30,6 +30,11 @@ namespace SearchClothes.Persistence.DataServices
             return await _dataService.Delete(id);
         }
 
+        public async Task<bool> Exists(IEnumerable<Tag> tags)
+        {
+            return !tags.Except(await _dataService.GetAll()).Any();
+        }
+
         public async Task<Tag> Get(Guid id)
         {
             return await _dataService.Get(id);

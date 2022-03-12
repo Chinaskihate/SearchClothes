@@ -1,4 +1,6 @@
-﻿using SearchClothes.Application.Interfaces.DataServices;
+﻿using AutoMapper;
+using SearchClothes.Application.Common.Tags;
+using SearchClothes.Application.Interfaces.DataServices;
 using SearchClothes.Application.Interfaces.Tags;
 using SearchClothes.Domain.Models;
 using System;
@@ -12,10 +14,12 @@ namespace SearchClothes.Application.Services.Tags
     public class TagService : ITagService
     {
         private readonly ITagDataService _tagDataService;
+        private readonly IMapper _mapper;
 
-        public TagService(ITagDataService dataService)
+        public TagService(ITagDataService dataService, IMapper mapper)
         {
             _tagDataService = dataService;
+            _mapper = mapper;
         }
 
         public async Task<bool> CreateTag(string name, Guid creatorId)
@@ -28,7 +32,8 @@ namespace SearchClothes.Application.Services.Tags
             var newTag = new Tag()
             {
                 Name = name,
-                CreatorId = creatorId
+                CreatorId = creatorId,
+                Posts = new List<Post>()
             };
             await _tagDataService.Create(newTag);
             return true;
@@ -42,6 +47,19 @@ namespace SearchClothes.Application.Services.Tags
         public async Task<IEnumerable<Tag>> GetByName(string name)
         {
             return await _tagDataService.GetByName(name);
+        }
+
+        public async Task<bool> Exists(IEnumerable<TagLookupDto> tagsDto)
+        {
+            var tags = tagsDto.Select(dto => _mapper.Map<Tag>(dto));
+            return await _tagDataService.Exists(tags);
+        }
+
+        public async Task<IEnumerable<Tag>> ConvertDtoToTags(IEnumerable<TagLookupDto> tagsDto)
+        {
+            var tags = tagsDto.Select(dto => _mapper.Map<Tag>(dto)).ToList();
+            var allTags = await _tagDataService.GetAll();
+            return allTags.Intersect(tags);
         }
     }
 }

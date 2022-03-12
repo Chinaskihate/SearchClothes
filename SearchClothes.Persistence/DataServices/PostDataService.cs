@@ -18,11 +18,19 @@ namespace SearchClothes.Persistence.DataServices
         {
             _dataService = new GenericDataService<Post>(dbContext);
             _dbContext = dbContext;
+            // _dbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public async Task<Post> Create(Post entity)
         {
-            return await _dataService.Create(entity);
+            var tags = entity.Tags;
+            // TODO: check if it works without tags removing;
+            entity.Tags = new List<Tag>();
+            var newPost = await _dataService.Create(entity);
+
+            entity.Tags = tags;
+            newPost = await Update(entity.Id, entity);
+            return newPost;
         }
 
         public async Task<bool> Delete(Guid id)
@@ -104,7 +112,19 @@ namespace SearchClothes.Persistence.DataServices
 
         public async Task<Post> Update(Guid id, Post entity)
         {
-            return await _dataService.Update(id, entity);
+            entity.Id = id;
+            // problem with multiple tags with same id in one dbContext.
+            //_dbContext.Tags.UpdateRange(entity.Tags);
+
+            //_dbContext.Tags.RemoveRange(entity.Tags);
+            var entry = _dbContext.Set<Post>().Update(entity);
+            await _dbContext.SaveChangesAsync();
+            //foreach (var tag in entity.Tags)
+            //{
+            //    _dbContext.Entry(entity).State = EntityState.;
+            //}
+
+            return entry.Entity;
         }
     }
 }

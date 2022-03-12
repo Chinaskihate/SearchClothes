@@ -9,6 +9,12 @@ namespace SearchClothes.Domain.Models
 {
     public class Post : DomainObject
     {
+        public Post()
+        {
+            Rates = new List<Rate>();
+            Tags = new List<Tag>();
+        }
+
         [Required]
         public Guid CreatorId { get; set; }
 

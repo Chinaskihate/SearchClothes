@@ -1,15 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using SearchClothes.Application.Common.Posts;
-using SearchClothes.Application.Interfaces.Authentication;
 using SearchClothes.Application.Interfaces.Posts;
-using SearchClothes.Application.Interfaces.Tags;
 using SearchClothes.Application.Interfaces.Users;
-using SearchClothes.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

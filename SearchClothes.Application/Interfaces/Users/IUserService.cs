@@ -16,5 +16,7 @@ namespace SearchClothes.Application.Interfaces.Users
         Task<bool> AddPostToUser(Guid userId, Post post);
 
         Task<bool> RemovePostFromUser(Guid userId, Guid postId);
+
+        Task<bool> HavePostWithTitle(Guid userId, string title);
     }
 }

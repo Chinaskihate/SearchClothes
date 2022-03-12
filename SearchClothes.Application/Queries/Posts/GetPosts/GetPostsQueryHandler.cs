@@ -33,11 +33,8 @@ namespace SearchClothes.Application.Queries.Posts.GetPosts
 
             var posts = await _postService.GetPosts(request.Title, request.Tags, request.MinimumRate);
 
-            var postsQuery = posts.AsQueryable();
-            var postsProjected = postsQuery.ProjectTo<PostLookupDto>(_mapper.ConfigurationProvider);
-
-            var postsList = postsProjected.ToList();
-            return new PostListVm() { Posts = postsList };
+            var postListVm = _mapper.Map<PostListVm>(posts);
+            return postListVm;
         }
     }
 }

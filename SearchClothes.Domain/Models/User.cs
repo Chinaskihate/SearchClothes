@@ -8,6 +8,11 @@ namespace SearchClothes.Domain.Models
 {
     public class User : DomainObject
     {
+        public User()
+        {
+            CreatedPosts = new List<Post>();
+            RatedPosts = new List<Post>();
+        }
         public string Username { get; set; }
 
         public string PasswordHash { get; set; }

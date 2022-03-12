@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SearchClothes.Application.Common.Mappings;
+using SearchClothes.Application.Common.Tags;
 using SearchClothes.Application.Queries.Posts.GetPosts;
 using SearchClothes.Domain.Models;
 using System;
@@ -13,7 +14,7 @@ namespace SearchClothes.WebApi.Models.Posts
 
         public string Title { get; set; }
     
-        public IEnumerable<Tag> Tags { get; set; }
+        public IEnumerable<TagLookupDto> Tags { get; set; }
 
         public double MinimumRate { get; set; }
     

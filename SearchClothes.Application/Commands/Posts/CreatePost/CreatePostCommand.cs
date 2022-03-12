@@ -1,13 +1,8 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using SearchClothes.Application.Common.Posts;
-using SearchClothes.Application.Interfaces.Posts;
-using SearchClothes.Domain.Models;
+using SearchClothes.Application.Common.Tags;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SearchClothes.Application.Commands.Posts.CreatePost
 {
@@ -21,6 +16,6 @@ namespace SearchClothes.Application.Commands.Posts.CreatePost
 
         public string SellerLink { get; set; }
 
-        public IEnumerable<Tag> Tags { get; set; }
+        public IEnumerable<TagLookupDto> Tags { get; set; }
     }
 }

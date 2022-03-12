@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SearchClothes.Application.Commands.Users.CreateUser;
 using SearchClothes.Application.Commands.Users.Login;
 using SearchClothes.Application.Commands.Users.VerificateUser;
+using SearchClothes.Application.Common.Users;
 using SearchClothes.Application.Interfaces.Authentication;
 using SearchClothes.Domain.Models;
 using SearchClothes.WebApi.Models.Authentication;
@@ -31,7 +32,7 @@ namespace SearchClothes.WebApi.Controllers
 
         [HttpPost("verificate")]
         // TODO: change return type
-        public async Task<ActionResult<User>> Verificate([FromBody] VerificateUserDto verificateUserDto)
+        public async Task<ActionResult<UserLookupDto>> Verificate([FromBody] VerificateUserDto verificateUserDto)
         {
             var command = _mapper.Map<VerificateUserCommand>(verificateUserDto);
             var user = await Mediator.Send(command);
@@ -39,7 +40,7 @@ namespace SearchClothes.WebApi.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<Guid>> Login([FromBody] LoginUserDto loginUserDto)
+        public async Task<ActionResult<UserLookupDto>> Login([FromBody] LoginUserDto loginUserDto)
         {
             var command = _mapper.Map<LoginUserCommand>(loginUserDto);
             var user = await Mediator.Send(command);

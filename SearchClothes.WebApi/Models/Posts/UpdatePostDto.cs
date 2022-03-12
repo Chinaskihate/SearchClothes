@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SearchClothes.Application.Commands.Posts.UpdatePost;
 using SearchClothes.Application.Common.Mappings;
+using SearchClothes.Application.Common.Tags;
 using SearchClothes.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace SearchClothes.WebApi.Models.Posts
 
         public string SellerLink { get; set; }
 
-        public IEnumerable<Tag> Tags { get; set; }
+        public IEnumerable<TagLookupDto> Tags { get; set; }
 
         public void Mapping(Profile profile)
         {

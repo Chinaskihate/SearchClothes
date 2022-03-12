@@ -34,6 +34,7 @@ namespace SearchClothes.Persistence
             services.AddDbContext<SearchClothesDbContext>(options =>
             {
                 options.UseSqlite(connectionString);
+                options.EnableSensitiveDataLogging();
             });
             services.AddScoped<ISearchClothesDbContext>(provider =>
                 provider.GetService<SearchClothesDbContext>());

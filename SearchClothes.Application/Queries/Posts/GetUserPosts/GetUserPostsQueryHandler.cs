@@ -30,12 +30,10 @@ namespace SearchClothes.Application.Queries.Posts.GetUserPosts
             {
                 return null;
             }
-            var result = (await _postService.GetUserPosts(user.Id))
-                .AsQueryable()
-                .ProjectTo<PostLookupDto>(_mapper.ConfigurationProvider)
-                .ToList();
+            var userPosts = await _postService.GetUserPosts(user.Id);
+            var postListVm = _mapper.Map<PostListVm>(userPosts);
 
-            return new PostListVm() { Posts = result};
+            return postListVm;
         }
     }
 }

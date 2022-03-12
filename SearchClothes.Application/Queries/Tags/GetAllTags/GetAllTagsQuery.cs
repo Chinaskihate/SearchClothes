@@ -1,14 +1,10 @@
 ﻿using MediatR;
-using SearchClothes.Domain.Models;
+using SearchClothes.Application.Common.Tags;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SearchClothes.Application.Queries.Tags.GetAllTags
 {
-    public class GetAllTagsQuery : IRequest<IEnumerable<Tag>>
+    public class GetAllTagsQuery : IRequest<TagListVm>
     {
         public Guid Token { get; set; }
     }

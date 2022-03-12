@@ -1,4 +1,5 @@
-﻿using SearchClothes.Application.Interfaces.DataServices;
+﻿using SearchClothes.Application.Common.Tags;
+using SearchClothes.Application.Interfaces.DataServices;
 using SearchClothes.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,9 @@ namespace SearchClothes.Application.Interfaces.Tags
         Task<IEnumerable<Tag>> GetAllTags();
 
         Task<IEnumerable<Tag>> GetByName(string name);
+
+        Task<bool> Exists(IEnumerable<TagLookupDto> tagsDto);
+
+        Task<IEnumerable<Tag>> ConvertDtoToTags(IEnumerable<TagLookupDto> tagsDto);
     }
 }
