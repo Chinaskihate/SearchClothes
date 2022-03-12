@@ -68,6 +68,12 @@ namespace SearchClothes.Application.Services.Posts
             return newPost;
         }
 
+        public async Task<Post> GetPostById(Guid postId)
+        {
+            var post = await _postDataService.Get(postId);
+            return post;
+        }
+
         public async Task<IEnumerable<Post>> GetPosts(string title, IEnumerable<TagLookupDto> tagsDto, double minRate)
         {
             var tags = await _tagService.ConvertDtoToTags(tagsDto);

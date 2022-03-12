@@ -5,11 +5,6 @@ using SearchClothes.Application.Interfaces;
 using SearchClothes.Application.Interfaces.DataServices;
 using SearchClothes.Domain.Models;
 using SearchClothes.Persistence.DataServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SearchClothes.Persistence
 {
@@ -29,6 +24,9 @@ namespace SearchClothes.Persistence
 
             services.AddScoped<IDataService<Post>, PostDataService>();
             services.AddScoped<IPostDataService, PostDataService>();
+
+            services.AddScoped<IDataService<Rate>, RateDataService>();
+            services.AddScoped<IRateDataService, RateDataService>();
 
             var connectionString = configuration["DbConnection"];
             services.AddDbContext<SearchClothesDbContext>(options =>

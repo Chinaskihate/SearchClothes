@@ -5,6 +5,7 @@ using SearchClothes.Application.Commands.Photos.SavePhoto;
 using SearchClothes.Application.Commands.Posts.CreatePost;
 using SearchClothes.Application.Commands.Posts.DeletePost;
 using SearchClothes.Application.Commands.Posts.UpdatePost;
+using SearchClothes.Application.Commands.Rates.RatePost;
 using SearchClothes.Application.Common.Posts;
 using SearchClothes.Application.Queries.Photos.DownloadPhoto;
 using SearchClothes.Application.Queries.Posts.GetPosts;
@@ -13,6 +14,7 @@ using SearchClothes.Domain.Models;
 using SearchClothes.WebApi.Models;
 using SearchClothes.WebApi.Models.Photos;
 using SearchClothes.WebApi.Models.Posts;
+using SearchClothes.WebApi.Models.Rates;
 using System;
 using System.Threading.Tasks;
 
@@ -100,6 +102,14 @@ namespace SearchClothes.WebApi.Controllers
             var downloadCommand = _mapper.Map<DownloadPhotoQuery>(downloadDto);
             var result = await Mediator.Send(downloadCommand);
             return result == null ? NotFound(downloadDto) : File(result, "image/png");
+        }
+
+        [HttpPost("rate-post")]
+        public async Task<ActionResult> RatePost([FromBody] RatePostDto ratePostDto)
+        {
+            var command = _mapper.Map<RatePostCommand>(ratePostDto);
+            var result = await Mediator.Send(command);
+            return Ok(result);
         }
     }
 }

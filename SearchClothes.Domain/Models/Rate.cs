@@ -13,5 +13,7 @@ namespace SearchClothes.Domain.Models
 
         [Range(0, 5)]
         public int Value { get; set; }
+
+        public Guid PostId { get; set; }
     }
 }

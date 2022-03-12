@@ -33,5 +33,9 @@ namespace SearchClothes.Application.Interfaces.Posts
             string Description,
             string SellerLink,
             IEnumerable<TagLookupDto> Tags) newPostInfo);
+
+        public Task<Post> GetPostById(Guid postId);
+
+        // public Task<bool> AddRateToPost(Guid) 
     }
 }

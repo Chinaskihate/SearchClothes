@@ -18,8 +18,4 @@
     <ProjectReference Include="..\SearchClothes.Domain\SearchClothes.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\Rates\" />
-  </ItemGroup>
-
 </Project>
