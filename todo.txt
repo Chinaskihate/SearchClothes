@@ -1,27 +1,26 @@
 12. редактирование информации о пользователе, что бы это не было
 13. реклама
 14. промокоды
-16. продумать удаление - пользователь при удалении поста должен сообщить всем другим пользователям чтоб они удалили из списка своих оцененных постов удаленный
-+ сами оценки из таблицы должны удалиться.
 17. много повторяющихся проверок пользователя на налл в хендлерах и сервисах.
 18. сделать что-то типа tokenizedcommand inheritance
-20. сделать какую-то проверку в пост сервисе что не пришло много одинаковых тегов. !!!
 24. подумать о том чтоб пользователь не хранил у себя созданные и оценные посты
 25. ловить исключение usernotfound in login command.
+26. проверить что делает сервер если ввести неверные данные в пост логин.
 
-mark token b3fde1f8-c32b-4c80-8eb5-a57e1cdc0dcd
-kunkka token f891c100-83a6-4298-a377-c9627c397d6c
-bot token 36e2eedf-a005-468b-b1ba-0945416d4e92
+{
+  "id": "3ae891da-ec62-42e4-ba27-0bc9a5e4f85c",
+  "token": "4b6276aa-cdfc-41fb-8aa3-e91651b44406",
+  "username": "mark",
+  "email": "markwantsapi@gmail.com",
+  "createdPosts": {
+    "posts": []
+  },
+  "ratedPosts": {
+    "posts": []
+  }
+}
 
-"tags": [
-    {
-      "id": "95d1e8bd-df95-4972-bc58-7c7982f89070",
-      "creatorId": "e3c22d85-cada-4d4f-8646-83262175dcf7",
-      "name": "warm"
-    },
-    {
-      "id": "8c472f09-199d-4591-ab60-d4bf23537ea2",
-      "creatorId": "e3c22d85-cada-4d4f-8646-83262175dcf7",
-      "name": "pretty"
-    }
-  ] 
+root pwd: tbF7rgC42TNiBMb018
+
+commands: docker pull markwantsapi/searchclotheswebapi
+docker run --publish 80:80/tcp markwantsapi/searchclotheswebapi

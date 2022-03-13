@@ -1,8 +1,5 @@
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -10,20 +7,12 @@ using Microsoft.Extensions.Hosting;
 using SearchClothes.Application;
 using SearchClothes.Application.Common.Mappings;
 using SearchClothes.Application.Interfaces;
-using SearchClothes.Application.Interfaces.Authentication;
-using SearchClothes.Application.Interfaces.DataServices;
 using SearchClothes.Application.Interfaces.Photos;
-using SearchClothes.Application.Services.Authentication;
-using SearchClothes.Domain.Models;
 using SearchClothes.Persistence;
-using SearchClothes.Persistence.DataServices;
+using SearchClothes.WebApi.Middleware;
 using SearchClothes.WebApi.Services.Photos;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace SearchClothes.WebApi
 {
@@ -72,6 +61,7 @@ namespace SearchClothes.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCustomExceptionHandler();
             app.UseSwagger();
             app.UseSwaggerUI();
             app.UseRouting();
@@ -82,11 +72,16 @@ namespace SearchClothes.WebApi
             {
                 endpoints.MapControllers();
             });
-
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                        Path.Combine(Directory.GetCurrentDirectory(), "Photos")),
+                        Path.Combine(env.ContentRootPath, "Photos")),
+                RequestPath = "/Photos"
+            });
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                        Path.Combine(env.ContentRootPath, "Photos")),
                 RequestPath = "/Photos"
             });
         }

@@ -1,6 +1,8 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using SearchClothes.Application.Common.Behaviors;
 using SearchClothes.Application.Interfaces.Authentication;
 using SearchClothes.Application.Interfaces.Posts;
 using SearchClothes.Application.Interfaces.Rates;
@@ -28,6 +30,9 @@ namespace SearchClothes.Application
             services.AddScoped<IRateService, RateService>();
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
+            services.AddTransient(typeof(IPipelineBehavior<,>),
+                typeof(ValidationBehavior<,>));
             return services;
         }
     }
