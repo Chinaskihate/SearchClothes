@@ -56,7 +56,7 @@ namespace SearchClothes.Application.Services.Posts
                 throw new PostAlreadyExistsException(newPost.CreatorId, newPost.Title);
             }
             newPost = await _postDataService.Create(newPost);
-            var isCreated = await _userService.AddPostToUser(user.Id, newPost);
+            var isCreated = await _userService.AddCreatedPostToUser(user.Id, newPost);
             return newPost;
         }
 

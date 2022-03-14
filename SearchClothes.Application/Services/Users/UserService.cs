@@ -39,7 +39,7 @@ namespace SearchClothes.Application.Services.Users
             return user;
         }
 
-        public async Task<bool> AddPostToUser(Guid userId, Post post)
+        public async Task<bool> AddCreatedPostToUser(Guid userId, Post post)
         {
             var user = await _userDataService.Get(userId);
             if (user == null)
@@ -51,6 +51,18 @@ namespace SearchClothes.Application.Services.Users
                 return false;
             }
             user.CreatedPosts.Add(post);
+            await _userDataService.Update(user.Id, user);
+            return true;
+        }
+
+        public async Task<bool> AddRatedPostToUser(Guid userId, Post post)
+        {
+            var user = await _userDataService.Get(userId);
+            if (user == null)
+            {
+                throw new UserNotFoundException(string.Empty, userId, Guid.Empty);
+            }
+            user.RatedPosts.Add(post);
             await _userDataService.Update(user.Id, user);
             return true;
         }

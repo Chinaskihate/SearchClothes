@@ -1,8 +1,5 @@
 ﻿using SearchClothes.Domain.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SearchClothes.Application.Interfaces.Users
@@ -13,7 +10,9 @@ namespace SearchClothes.Application.Interfaces.Users
 
         Task<User> GetById(Guid id);
 
-        Task<bool> AddPostToUser(Guid userId, Post post);
+        Task<bool> AddCreatedPostToUser(Guid userId, Post post);
+
+        Task<bool> AddRatedPostToUser(Guid userId, Post post);
 
         Task<bool> RemovePostFromUser(Guid userId, Guid postId);
 

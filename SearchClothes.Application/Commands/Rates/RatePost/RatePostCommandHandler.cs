@@ -25,6 +25,10 @@ namespace SearchClothes.Application.Commands.Rates.RatePost
             var user = await _userService.GetByToken(request.Token);
             var post = await _postService.GetPostById(request.PostId);
             var result = await _rateService.RatePost(user, post, request.Rate);
+            if (result)
+            {
+                await _userService.AddRatedPostToUser(user.Id, post);
+            }
             return result;
         }
     }

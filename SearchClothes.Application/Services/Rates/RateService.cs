@@ -37,6 +37,7 @@ namespace SearchClothes.Application.Services.Rates
                     PostId = post.Id,
                     Value = rate
                 };
+
                 rateModel = await _rateDataService.Create(rateModel);
             }
             else
