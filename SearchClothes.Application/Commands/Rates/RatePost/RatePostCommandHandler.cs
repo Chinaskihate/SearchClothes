@@ -23,21 +23,9 @@ namespace SearchClothes.Application.Commands.Rates.RatePost
         public async Task<bool> Handle(RatePostCommand request, CancellationToken cancellationToken)
         {
             var user = await _userService.GetByToken(request.Token);
-            if (user == null)
-            {
-                return false;
-            }
             var post = await _postService.GetPostById(request.PostId);
-            if (post == null)
-            {
-                return false;
-            }
             var result = await _rateService.RatePost(user, post, request.Rate);
-            if (!result)
-            {
-                return false;
-            }
-            return true;
+            return result;
         }
     }
 }

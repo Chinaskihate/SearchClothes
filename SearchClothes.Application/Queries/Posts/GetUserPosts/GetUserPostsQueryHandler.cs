@@ -26,10 +26,6 @@ namespace SearchClothes.Application.Queries.Posts.GetUserPosts
         public async Task<PostListVm> Handle(GetUserPostsQuery request, CancellationToken cancellationToken)
         {
             var user = await _userService.GetByToken(request.Token);
-            if (user == null)
-            {
-                return null;
-            }
             var userPosts = await _postService.GetUserPosts(user.Id);
             var postListVm = _mapper.Map<PostListVm>(userPosts);
 

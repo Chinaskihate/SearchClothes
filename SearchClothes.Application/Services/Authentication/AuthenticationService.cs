@@ -32,7 +32,7 @@ namespace SearchClothes.Application.Services.Authentication
             var user = await _userDataService.GetByEmail(email);
             if (user == null)
             {
-                throw new UserNotFoundException(email);
+                throw new UserNotFoundException(email, Guid.Empty, Guid.Empty);
             }
             PasswordVerificationResult passwordResult = _passwordHasher.VerifyHashedPassword(user.PasswordHash, password);
             if (passwordResult != PasswordVerificationResult.Success)
@@ -80,7 +80,7 @@ namespace SearchClothes.Application.Services.Authentication
             var verification = await _verificationDataService.GetByEmail(email);
             if (verification == null)
             {
-                throw new UserNotFoundException(email);
+                throw new UserNotFoundException(email, Guid.Empty, Guid.Empty);
             }
             if (verification.Code != verificationCode)
             {

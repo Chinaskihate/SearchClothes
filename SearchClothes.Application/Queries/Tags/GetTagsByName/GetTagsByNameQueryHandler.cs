@@ -24,10 +24,6 @@ namespace SearchClothes.Application.Queries.Tags.GetTagsByName
         public async Task<TagListVm> Handle(GetTagsByNameQuery request, CancellationToken cancellationToken)
         {
             var user = await _userService.GetByToken(request.Token);
-            if (user == null)
-            {
-                return new TagListVm();
-            }
             var tags = await _tagService.GetByName(request.Name);
             var tagListVm = _mapper.Map<TagListVm>(tags);
             return tagListVm;

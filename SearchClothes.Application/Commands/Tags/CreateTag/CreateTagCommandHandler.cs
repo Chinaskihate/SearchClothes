@@ -26,10 +26,6 @@ namespace SearchClothes.Application.Commands.Tags.CreateTag
         public async Task<bool> Handle(CreateTagCommand request, CancellationToken cancellationToken)
         {
             var user = await _userService.GetByToken(request.Token);
-            if (user == null)
-            {
-                return false;
-            }
             var result = await _tagService.CreateTag(request.Name, user.Id);
             return result;
         }

@@ -1,10 +1,6 @@
 ﻿using MediatR;
 using SearchClothes.Application.Interfaces.Posts;
 using SearchClothes.Application.Interfaces.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,11 +20,7 @@ namespace SearchClothes.Application.Commands.Posts.DeletePost
         public async Task<bool> Handle(DeletePostCommand request, CancellationToken cancellationToken)
         {
             var user = await _userService.GetByToken(request.Token);
-            if (user == null)
-            {
-                return false;
-            }
-            var result = await _postService.RemovePost(request.PostId);
+            var result = await _postService.RemovePost(user.Id, request.PostId);
             return result;
         }
     }

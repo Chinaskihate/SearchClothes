@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SearchClothes.Application.Common.Exceptions;
 using SearchClothes.Application.Common.Tags;
 using SearchClothes.Application.Interfaces.DataServices;
 using SearchClothes.Application.Interfaces.Posts;
@@ -34,11 +35,6 @@ namespace SearchClothes.Application.Services.Posts
             IEnumerable<TagLookupDto> Tags) postInfo)
         {
             var user = await _userService.GetById(postInfo.CreatorId);
-            bool flag = !postInfo.Tags.Any() || await _tagService.Exists(postInfo.Tags);
-            if (!flag)
-            {
-                return null;
-            }
             var newPost = new Post()
             {
                 Id = Guid.NewGuid(),
@@ -57,20 +53,20 @@ namespace SearchClothes.Application.Services.Posts
             }
             if (await _userService.HavePostWithTitle(newPost.CreatorId, newPost.Title))
             {
-                return null;
+                throw new PostAlreadyExistsException(newPost.CreatorId, newPost.Title);
             }
             newPost = await _postDataService.Create(newPost);
             var isCreated = await _userService.AddPostToUser(user.Id, newPost);
-            if (!isCreated)
-            {
-                return null;
-            }
             return newPost;
         }
 
         public async Task<Post> GetPostById(Guid postId)
         {
             var post = await _postDataService.Get(postId);
+            if (post == null)
+            {
+                throw new PostNotFoundException(postId);
+            }
             return post;
         }
 
@@ -87,24 +83,20 @@ namespace SearchClothes.Application.Services.Posts
             return posts;
         }
 
-        public async Task<bool> RemovePost(Guid postId)
+        public async Task<bool> RemovePost(Guid userId, Guid postId)
         {
             var post = await _postDataService.Get(postId);
-            if (post == null)
+            if (post.CreatorId != userId)
             {
-                return false;
+                throw new EditingNotUserOwnPostException(userId, postId);
             }
-            //var result = await _userService.RemovePostFromUser(post.CreatorId, postId);
-            //if (result)
-            //{
-            //    await _postDataService.Delete(postId);
-            //}
             await _postDataService.Delete(postId);
             return true;
 
         }
 
-        public async Task<Post> UpdatePost((Guid PostId,
+        public async Task<Post> UpdatePost(Guid creatorId,
+            (Guid PostId,
             string Title,
             string Description,
             string SellerLink,
@@ -113,13 +105,11 @@ namespace SearchClothes.Application.Services.Posts
             var post = await _postDataService.Get(newPostInfo.PostId);
             if (post == null)
             {
-                return null;
+                throw new PostNotFoundException(newPostInfo.PostId);
             }
-
-            bool flag = !newPostInfo.Tags.Any() || await _tagService.Exists(newPostInfo.Tags);
-            if (!flag)
+            if (post.CreatorId != creatorId )
             {
-                return null;
+                throw new EditingNotUserOwnPostException(creatorId, post.Id);
             }
 
             post.Title = newPostInfo.Title;

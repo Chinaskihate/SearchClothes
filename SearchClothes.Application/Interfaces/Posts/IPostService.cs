@@ -26,9 +26,10 @@ namespace SearchClothes.Application.Interfaces.Posts
 
         public Task<IEnumerable<Post>> GetUserPosts(Guid userId);
 
-        public Task<bool> RemovePost(Guid postId);
+        public Task<bool> RemovePost(Guid creatorId, Guid postId);
 
-        public Task<Post> UpdatePost((Guid PostId,
+        public Task<Post> UpdatePost(Guid creatorId,
+            (Guid PostId,
             string Title,
             string Description,
             string SellerLink,

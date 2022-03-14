@@ -1,4 +1,5 @@
-﻿using SearchClothes.Application.Interfaces.DataServices;
+﻿using SearchClothes.Application.Common.Exceptions;
+using SearchClothes.Application.Interfaces.DataServices;
 using SearchClothes.Application.Interfaces.Users;
 using SearchClothes.Domain.Models;
 using System;
@@ -21,18 +22,30 @@ namespace SearchClothes.Application.Services.Users
         public async Task<User> GetById(Guid id)
         {
             var user = await _userDataService.Get(id);
+            if (user == null)
+            {
+                throw new UserNotFoundException(string.Empty, id, Guid.Empty);
+            }
             return user;
         }
 
         public async Task<User> GetByToken(Guid token)
         {
             var user = await _userDataService.GetByToken(token);
+            if (user == null)
+            {
+                throw new UserNotFoundException(string.Empty, Guid.Empty, token);
+            }
             return user;
         }
 
         public async Task<bool> AddPostToUser(Guid userId, Post post)
         {
             var user = await _userDataService.Get(userId);
+            if (user == null)
+            {
+                throw new UserNotFoundException(string.Empty, userId, Guid.Empty);
+            }
             if (await HavePostWithTitle(userId, post.Title))
             {
                 return false;
@@ -47,7 +60,7 @@ namespace SearchClothes.Application.Services.Users
             var user = await _userDataService.Get(userId);
             if (user == null)
             {
-                return false;
+                throw new UserNotFoundException(string.Empty, userId, Guid.Empty);
             }
             return user.CreatedPosts.Any(p => p.Title == title);
         }
@@ -57,7 +70,7 @@ namespace SearchClothes.Application.Services.Users
             var user = await _userDataService.Get(userId);
             if (user == null)
             {
-                return false;
+                throw new UserNotFoundException(string.Empty, userId, Guid.Empty);
             }
             var removedPost = user.CreatedPosts.FirstOrDefault(p => p.Id == postId);
             if (removedPost == null)

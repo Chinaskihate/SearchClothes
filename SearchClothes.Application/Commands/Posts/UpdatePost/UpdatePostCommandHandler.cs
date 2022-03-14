@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using SearchClothes.Application.Common.Exceptions;
 using SearchClothes.Application.Common.Posts;
 using SearchClothes.Application.Interfaces.Posts;
 using SearchClothes.Application.Interfaces.Users;
@@ -27,23 +28,19 @@ namespace SearchClothes.Application.Commands.Posts.UpdatePost
         public async Task<PostLookupDto> Handle(UpdatePostCommand request, CancellationToken cancellationToken)
         {
             var user = await _userService.GetByToken(request.Token);
-            if (user == null) { return null; }
             var oldPost = user.CreatedPosts.FirstOrDefault(p => p.Id == request.PostId);
             var postWithNewTitle = user.CreatedPosts.FirstOrDefault(p => p.Title == request.Title);
             if (oldPost == null || (postWithNewTitle != null && oldPost.Id != postWithNewTitle.Id))
             {
-                return null;
+                throw new PostAlreadyExistsException(user.Id, request.Title);
             }
 
-            var newPost = await _postService.UpdatePost((request.PostId,
+            var newPost = await _postService.UpdatePost(user.Id,
+                (request.PostId,
                 request.Title,
                 request.Description,
                 request.SellerLink,
                 request.Tags));
-            if (newPost == null)
-            {
-                return null;
-            }
             return _mapper.Map<PostLookupDto>(newPost);
         }
     }

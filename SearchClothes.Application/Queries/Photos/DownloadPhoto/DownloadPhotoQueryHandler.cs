@@ -24,10 +24,6 @@ namespace SearchClothes.Application.Queries.Photos.DownloadPhoto
         public async Task<byte[]> Handle(DownloadPhotoQuery request, CancellationToken cancellationToken)
         {
             var user = await _userService.GetByToken(request.Token);
-            if (user == null)
-            {
-                return null;
-            }
             return await _photoService.DownloadPhoto(request.PostId);
         }
     }

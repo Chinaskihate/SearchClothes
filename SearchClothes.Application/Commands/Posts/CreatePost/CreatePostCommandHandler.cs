@@ -24,10 +24,6 @@ namespace SearchClothes.Application.Commands.Posts.CreatePost
         public async Task<PostLookupDto> Handle(CreatePostCommand request, CancellationToken cancellationToken)
         {
             var user = await _userService.GetByToken(request.Token);
-            if (user == null)
-            {
-                return null;
-            }
             var newPost = await _postService.CreatePost((
                     user.Id,
                     request.Title,

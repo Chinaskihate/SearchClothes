@@ -19,7 +19,7 @@ namespace SearchClothes.Application.Queries.Users
         {
             _userService = userService;
         }
-
+        
         public async Task<User> Handle(GetUserByTokenQuery request, CancellationToken cancellationToken)
         {
             var result = await _userService.GetByToken(request.Token);

@@ -26,10 +26,6 @@ namespace SearchClothes.Application.Queries.Tags.GetAllTags
         public async Task<TagListVm> Handle(GetAllTagsQuery request, CancellationToken cancellationToken)
         {
             var user = await _userService.GetByToken(request.Token);
-            if (user == null)
-            {
-                return new TagListVm();
-            }
             var tags = await _tagService.GetAllTags();
             var tagListVm = _mapper.Map<TagListVm>(tags);
             return tagListVm;

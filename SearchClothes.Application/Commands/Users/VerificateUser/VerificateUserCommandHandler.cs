@@ -26,10 +26,6 @@ namespace SearchClothes.Application.Commands.Users.VerificateUser
         public async Task<UserLookupDto> Handle(VerificateUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _authenticationService.Verificate(request.Email, request.VerificationCode);
-            if (user == null)
-            {
-                return null;
-            }
             var userDto = _mapper.Map<UserLookupDto>(user);
 
             return userDto;

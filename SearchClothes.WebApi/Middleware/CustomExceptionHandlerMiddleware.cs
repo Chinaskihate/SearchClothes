@@ -39,7 +39,20 @@ namespace SearchClothes.WebApi.Middleware
                     code = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(validationException.Errors);
                     break;
-                case UserNotFoundException notFoundException:
+                case InvalidPasswordException invalidPasswordException:
+                    code = HttpStatusCode.Unauthorized;
+                    break;
+                case InvalidVerificationCode invalidVerificationCode:
+                    code = HttpStatusCode.Unauthorized;
+                    break;
+                case PostAlreadyExistsException:
+                    code = HttpStatusCode.BadRequest;
+                    break;
+                case EditingNotUserOwnPostException:
+                    code = HttpStatusCode.Forbidden;
+                    break;
+                case UserNotFoundException userNotFoundException:
+                case PostNotFoundException post:
                     code = HttpStatusCode.NotFound;
                     break;
                 //TODO: add other exceptions!
