@@ -37,6 +37,6 @@ namespace SearchClothes.Application.Interfaces.Posts
 
         public Task<Post> GetPostById(Guid postId);
 
-        // public Task<bool> AddRateToPost(Guid) 
+        public Task<IEnumerable<Post>> GetRatedPosts(Guid userId);
     }
 }

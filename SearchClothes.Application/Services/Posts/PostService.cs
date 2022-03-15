@@ -125,5 +125,12 @@ namespace SearchClothes.Application.Services.Posts
             var newPost = await _postDataService.Update(post.Id, post);
             return newPost;
         }
+
+        public async Task<IEnumerable<Post>> GetRatedPosts(Guid userId)
+        {
+            // TODO: change to lazy loading.
+            var posts = await _postDataService.GetAll();
+            return posts.Where(p => p.Rates.Any(r => r.UserId == userId));
+        }
     }
 }

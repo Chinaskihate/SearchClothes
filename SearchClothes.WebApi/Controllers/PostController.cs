@@ -9,6 +9,7 @@ using SearchClothes.Application.Commands.Rates.RatePost;
 using SearchClothes.Application.Common.Posts;
 using SearchClothes.Application.Queries.Photos.DownloadPhoto;
 using SearchClothes.Application.Queries.Posts.GetPosts;
+using SearchClothes.Application.Queries.Posts.GetRatedPosts;
 using SearchClothes.Application.Queries.Posts.GetUserPosts;
 using SearchClothes.Domain.Models;
 using SearchClothes.WebApi.Models;
@@ -108,6 +109,14 @@ namespace SearchClothes.WebApi.Controllers
         public async Task<ActionResult> RatePost([FromBody] RatePostDto ratePostDto)
         {
             var command = _mapper.Map<RatePostCommand>(ratePostDto);
+            var result = await Mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPost("get-rated-posts")]
+        public async Task<ActionResult> GetRatedPosts([FromBody] TokenDto tokenDto)
+        {
+            var command = _mapper.Map<GetRatedPostsQuery>(tokenDto);
             var result = await Mediator.Send(command);
             return Ok(result);
         }

@@ -1,12 +1,17 @@
-12. редактирование информации о пользователе, что бы это не было
-13. реклама
-14. промокоды
-24. подумать о том чтоб пользователь не хранил у себя созданные и оценные посты
-26. проверить что делает сервер если ввести неверные данные в пост логин.
+server:
+1) проверить что будет если пользователь сделает верификацию два раза
+2) добавить метод для получения оцененных постов
+
+client:
+1) починить первые элементы в стеквью
+3) отключить верт скрол в горизонт стеке с тегами!
+4) адапт верстка в регистрации и логине
+5) ждать выполнения таск, а не выкидывать ответ сразу)
+6) добавить тайтл в created posts, rated posts
 
 {
-  "id": "1f06177c-0fa8-4461-b138-c8691087a5bf",
-  "token": "0b092307-a0d5-4e60-bd7f-c68bfe94d307",
+  "id": "85a03491-4da8-4a1b-a09c-e8a3841f6483",
+  "token": "06191e9c-12a6-4e2c-be0d-5a7f0ebf05f3",
   "username": "mark",
   "email": "markwantsapi@gmail.com",
   "createdPosts": {
@@ -18,8 +23,8 @@
 }
 
 {
-  "id": "56c5b815-6744-4d4d-b255-e50da54de0ba",
-  "token": "c6cadbdd-4000-4907-aac5-b72bbf6d01e0",
+  "id": "c3e017f0-89bf-4ae0-aec0-adfa5c9c84d7",
+  "token": "11bdfc57-98cd-417a-b286-34746cbb6f0c",
   "username": "kunkka",
   "email": "acconlyfordota@gmail.com",
   "createdPosts": {
@@ -28,13 +33,42 @@
   "ratedPosts": {
     "posts": []
   }
-}
+
+{
+      "id": "3250e584-1664-4529-9f7a-ce04eac0e59d",
+      "creatorId": "85a03491-4da8-4a1b-a09c-e8a3841f6483",
+      "title": "nike kd 16",
+      "sellerLink": "string",
+      "description": "string",
+      "lastEditTime": "2022-03-14T18:23:26.0745342",
+      "rate": 0,
+      "tags": [
+        {
+          "id": "23e7cb61-9dd2-4554-a309-621c1d54e66c",
+          "creatorId": "c3e017f0-89bf-4ae0-aec0-adfa5c9c84d7",
+          "name": "boots"
+        }
+      ]
+    }
+
+
+{
+      "id": "23e7cb61-9dd2-4554-a309-621c1d54e66c",
+      "creatorId": "c3e017f0-89bf-4ae0-aec0-adfa5c9c84d7",
+      "name": "boots"
+    },
+    {
+      "id": "69d4260f-baaf-4296-98ae-0516acd77e36",
+      "creatorId": "85a03491-4da8-4a1b-a09c-e8a3841f6483",
+      "name": "zoom"
+    }
+
+
 
 root pwd: tbF7rgC42TNiBMb018
 
 commands: docker pull markwantsapi/searchclotheswebapi
 docker run --publish 80:80/tcp markwantsapi/searchclotheswebapi
 
-local
-mark e3474cb9-c827-4900-89de-3c01908c1254, post e4f4f520-b829-4693-b30b-32155c21aff5
-kunkka 263c1730-1127-4d4d-a156-67ff0c04dca2, psot a11d3b4a-61c1-438d-b71f-bc1d4e35ac07
+local: mark 54a3277a-b673-4e92-86b0-09d6b638e62f
+kunkka bff5ddd6-9d30-4347-a940-73e21157f341
