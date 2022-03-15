@@ -53,7 +53,7 @@ namespace SearchClothes.Persistence.DataServices
                 .Include(post => post.Tags)
                 .Include(post => post.Rates)
                 .Where(post => post.Title.Contains(title))
-                .Where(post => post.Rates.Count() == 0 ? false : post.Rates.Average(r => r.Value) >= minRate)
+                .Where(post => post.Rates.Count() == 0 ? minRate == 0 : post.Rates.Average(r => r.Value) >= minRate)
                 .ToListAsync();
             entity = entity
                 .Where(post => !tags.Except(post.Tags).Any())

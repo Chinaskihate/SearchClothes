@@ -10,50 +10,22 @@ client:
 6) добавить тайтл в created posts, rated posts
 7) удалить из пост вью создание пяти алертов, переделать на цикл
 
-mark token 36b073da-1ab7-453f-b355-6d5eda25461c
-kunkka token 47cb02b8-966a-4f9e-9706-bf1346035740
-
-{
-      "id": "874bc7f1-05c3-483f-bb5e-41e8a589000d",
-      "creatorId": "c45524c5-0953-4091-84da-44a37dad95dd",
-      "name": "boots"
+ {
+      "id": "c8d38067-67c8-45b0-a0a4-1a78ff08f735",
+      "creatorId": "6e636648-cd3a-4a1a-bab5-bedddc6e1e2d",
+      "name": "zoom"
     },
     {
-      "id": "265bbc5f-83b8-4846-90a0-9323d79d56d0",
-      "creatorId": "c45524c5-0953-4091-84da-44a37dad95dd",
-      "name": "zoom"
-    }
-}
-
-
-
-{
-  "id": "50444d04-c61b-4261-8ab2-55ccb5cf1381",
-  "creatorId": "c45524c5-0953-4091-84da-44a37dad95dd",
-  "title": "nike kd 5",
-  "sellerLink": "https://nike.com",
-  "description": "good for outside",
-  "lastEditTime": "2022-03-15T04:39:49.157894+00:00",
-  "rate": 0,
-  "tags": [
-    {
-      "id": "874bc7f1-05c3-483f-bb5e-41e8a589000d",
-      "creatorId": "c45524c5-0953-4091-84da-44a37dad95dd",
+      "id": "dd78fa02-2dc2-4685-98d6-db0229faf012",
+      "creatorId": "6e636648-cd3a-4a1a-bab5-bedddc6e1e2d",
       "name": "boots"
-    },
-    {
-      "id": "265bbc5f-83b8-4846-90a0-9323d79d56d0",
-      "creatorId": "c45524c5-0953-4091-84da-44a37dad95dd",
-      "name": "zoom"
     }
-  ]
-}
-50444d04-c61b-4261-8ab2-55ccb5cf1381
-
 root pwd: tbF7rgC42TNiBMb018
 
-local mark token 6d39d60c-073e-4383-94b4-957b9b4357a8
-kunkka token 271d1f90-255d-4d7f-ac2b-8e97f789b073
+mark token 73bf2c25-4ab1-40f9-95b5-ae2d6c90d51d
+kunkka token db3e94fe-f7a2-4b41-9b75-8f609ec74cbc
+post f654896d-aade-4f50-8b02-553f156535b6
+153859e5-4349-4112-8972-de3d3c004318
 
 commands: docker pull markwantsapi/searchclotheswebapi
 docker run --publish 80:80/tcp markwantsapi/searchclotheswebapi
