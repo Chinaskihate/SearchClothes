@@ -8,67 +8,52 @@ client:
 4) адапт верстка в регистрации и логине
 5) ждать выполнения таск, а не выкидывать ответ сразу)
 6) добавить тайтл в created posts, rated posts
+7) удалить из пост вью создание пяти алертов, переделать на цикл
+
+mark token 36b073da-1ab7-453f-b355-6d5eda25461c
+kunkka token 47cb02b8-966a-4f9e-9706-bf1346035740
 
 {
-  "id": "85a03491-4da8-4a1b-a09c-e8a3841f6483",
-  "token": "06191e9c-12a6-4e2c-be0d-5a7f0ebf05f3",
-  "username": "mark",
-  "email": "markwantsapi@gmail.com",
-  "createdPosts": {
-    "posts": []
-  },
-  "ratedPosts": {
-    "posts": []
-  }
-}
-
-{
-  "id": "c3e017f0-89bf-4ae0-aec0-adfa5c9c84d7",
-  "token": "11bdfc57-98cd-417a-b286-34746cbb6f0c",
-  "username": "kunkka",
-  "email": "acconlyfordota@gmail.com",
-  "createdPosts": {
-    "posts": []
-  },
-  "ratedPosts": {
-    "posts": []
-  }
-
-{
-      "id": "3250e584-1664-4529-9f7a-ce04eac0e59d",
-      "creatorId": "85a03491-4da8-4a1b-a09c-e8a3841f6483",
-      "title": "nike kd 16",
-      "sellerLink": "string",
-      "description": "string",
-      "lastEditTime": "2022-03-14T18:23:26.0745342",
-      "rate": 0,
-      "tags": [
-        {
-          "id": "23e7cb61-9dd2-4554-a309-621c1d54e66c",
-          "creatorId": "c3e017f0-89bf-4ae0-aec0-adfa5c9c84d7",
-          "name": "boots"
-        }
-      ]
-    }
-
-
-{
-      "id": "23e7cb61-9dd2-4554-a309-621c1d54e66c",
-      "creatorId": "c3e017f0-89bf-4ae0-aec0-adfa5c9c84d7",
+      "id": "874bc7f1-05c3-483f-bb5e-41e8a589000d",
+      "creatorId": "c45524c5-0953-4091-84da-44a37dad95dd",
       "name": "boots"
     },
     {
-      "id": "69d4260f-baaf-4296-98ae-0516acd77e36",
-      "creatorId": "85a03491-4da8-4a1b-a09c-e8a3841f6483",
+      "id": "265bbc5f-83b8-4846-90a0-9323d79d56d0",
+      "creatorId": "c45524c5-0953-4091-84da-44a37dad95dd",
       "name": "zoom"
     }
+}
 
 
+
+{
+  "id": "50444d04-c61b-4261-8ab2-55ccb5cf1381",
+  "creatorId": "c45524c5-0953-4091-84da-44a37dad95dd",
+  "title": "nike kd 5",
+  "sellerLink": "https://nike.com",
+  "description": "good for outside",
+  "lastEditTime": "2022-03-15T04:39:49.157894+00:00",
+  "rate": 0,
+  "tags": [
+    {
+      "id": "874bc7f1-05c3-483f-bb5e-41e8a589000d",
+      "creatorId": "c45524c5-0953-4091-84da-44a37dad95dd",
+      "name": "boots"
+    },
+    {
+      "id": "265bbc5f-83b8-4846-90a0-9323d79d56d0",
+      "creatorId": "c45524c5-0953-4091-84da-44a37dad95dd",
+      "name": "zoom"
+    }
+  ]
+}
+50444d04-c61b-4261-8ab2-55ccb5cf1381
 
 root pwd: tbF7rgC42TNiBMb018
 
+local mark token 6d39d60c-073e-4383-94b4-957b9b4357a8
+kunkka token 271d1f90-255d-4d7f-ac2b-8e97f789b073
+
 commands: docker pull markwantsapi/searchclotheswebapi
 docker run --publish 80:80/tcp markwantsapi/searchclotheswebapi
-
-local: mark 54a3277a-b673-4e92-86b0-09d6b638e62f
-kunkka bff5ddd6-9d30-4347-a940-73e21157f341
